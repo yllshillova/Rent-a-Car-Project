@@ -7,27 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <title>Login/Register form</title>
+    <link rel="stylesheet" href="LoginFormStyle.css">
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
 
 <body>
 
     <div class="container-login">
         <div class="forms-container">
-            sign in
+            <!-- sign in -->
             <div class="signin-signup">
                 <form action="#" class="sign-in-form">
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="test" onchange="">
+                        <input type="text" placeholder="Username" id="useri_SignIn" onchange="">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" id="passwordi_SignIn">
                     </div>
-                    <input type="submit" class="btn input" value="Login" />
+                    <input type="submit" class="btn input" value="Login" onclick="validationSignin()"/>
                     <p class="social-text">Or Sign in with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
@@ -45,27 +46,27 @@
                     </div>
                 </form>
             </div>
-            sign up
+            <!-- sign up -->
             <div class="signin-signup">
                 <form action="#" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
-                     <div class="input-field">
+                    <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username">
-                    </div> 
-
-
-
-                   <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="text" placeholder="Email">
-                    </div> 
-                    
-                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="text" placeholder="Username" id="useri_SignUp">
                     </div>
-                    <input type="submit" class="btn input" value="Login" />
+
+
+
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" placeholder="Email" id="emaili_SignUp">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="passwordi_SignUp">
+                    </div>
+                    <input type="submit" class="btn input" value="Login"  onclick="validationSignUp()"/>
                     <p class="social-text">Or Sign Up with social platforms</p>
 
 
@@ -91,8 +92,9 @@
             <div class="panel left-panel">
                 <div class="content">
                     <h3>New Here?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                         Corrupti nulla magnam eos voluptatem!</p>
+                    <p>Its a pleasure for us to have a new costumer that's interested at renting the best, secure and
+                        comfort cars. Rent a car its the only place that makes costumers feel like home. So feel free to
+                        Sign Up to be informed for every update on rent prices and more ...</p>
                     <button class="btn transparent" id="sign-up-button">Sign Up</button>
                 </div>
                 <img src="../Project_WEB/img/log.svg" alt="" class="image">
@@ -100,20 +102,17 @@
             <div class="panel right-panel">
                 <div class="content">
                     <h3>One of us?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Placeat, quod mollitia illo, commodi vero, provident
-                        voluptatum similique tempora exercitationem facere
-                        quibusdam
-                        suscipit qui modi nam magni expedita doloribus eos odio?</p>
+                    <p>Sign in if ur already registered in our web-application to recieve every update on time. Being
+                        part of us its always a pleasure for Rent a car company.</p>
                     <button class="btn transparent" id="sign-in-button">Sign In</button>
                 </div>
                 <img src="../Project_WEB/img/register.svg" alt="" class="image">
             </div>
-        
+
         </div>
     </div>
 
-  
+
 
 
     <script src="LoginForm.js"></script>
