@@ -16,11 +16,11 @@ input {
     margin: 0px auto;
 }
 
+
 /* ================ HEADER ================== */
 header {
     box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
+    position: relative;
     background-color: white;
 }
 
@@ -53,12 +53,6 @@ header {
 
 /* color */
 .navbar li a {
-    /* text-decoration: none;
-    font-size: 18px;
-    color: rgba(0, 0, 0, 0.5);
-    font-weight: 400;
-    margin: 20px; */
-    /* box-sizing: border-box; */
     margin: 10px;
     position: relative;
     color: black;
@@ -132,11 +126,6 @@ header {
 
 
 
-/* 
-.navbar .active {
-    color: black;
-    /* border-bottom: 2px solid #a4c639; 
-} */
 
 /* =============== Header============== */
 /* =============== Section 1 =========== */
@@ -189,8 +178,8 @@ header {
     height: 260px;
     width: 400px;
     border: 2px solid #a4c639;
-    border-radius: 40px;
-    background-color: #f6f6f6;
+    border-radius: 5px;
+    background: rgba(237, 237, 243, 0.75);
 }
 
 .about-content {
@@ -217,9 +206,9 @@ header {
     padding: 15px;
     float: right;
     width: 600px;
-    background-color: #f6f6f6;
+    background: rgba(237, 237, 243, 0.75);
     border: 2px solid #a4c639;
-    border-radius: 40px;
+    border-radius: 5px;
 }
 
 .costumer-rating .p-costumer-rating {
@@ -291,7 +280,7 @@ header {
     margin-left: 100px;
     border: 2px solid #a4c639;
     border-radius: 10px;
-    background-color: #f6f6f6;
+    background: rgba(237, 237, 243, 0.75);
 }
 
 .flexible-rentals {
@@ -548,7 +537,6 @@ header {
     width: 100px;
     position: relative;
     border: 0.1em solid #a4c639;
-    background-color: #eae5f0;
     color: black;
     text-decoration: none;
     text-transform: uppercase;

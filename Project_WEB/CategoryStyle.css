@@ -1,16 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 .section2 {
     background-color: white;
     display: flex;
 }
 
-.navbar li #sec2_a {
-    position: relative;
-    left: 450px;
+
+
+.navbar2 h1{
+    margin-left: 460px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    margin-top: 3px;
+    color: black;
+    text-transform: uppercase;
 }
+
 
 /* button -Go back to home */
 
-.go-back-button {
+/* .go-back-button {
     margin-left: 15px;
     position: relative;
     border: 0.1em solid #a4c639;
@@ -32,46 +42,8 @@
     color: black;
     box-shadow: 0 0 35px #a4c639;
 }
-
-/* 
-.go-back-button::before {
-    content: '';
-    position: absolute;
-    border: 2px solid #a4c639;
-    top: -3.5px;
-    width: 10px;
-    height: 5px;
-    left: 80%;
-    border-radius: 2px;
-    transition: all .5s ease;
-}
-
-.go-back-button ::after {
-    content: '';
-    position: absolute;
-    border: 2px solid #a4c639;
-    bottom: -3.5px;
-    width: 10px;
-    height: 5px;
-    left: 20%;
-    border-radius: 2px;
-    transition: all .5s ease;
-} */
-
-/* #active {
-    border-bottom: 2px solid #a4c639;
-}
  */
 
-
-
-.section2 h1 {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 3px;
-    color: #a4c639;
-    text-transform: uppercase;
-}
 
 .section2 hr {
     margin-left: 41%;
