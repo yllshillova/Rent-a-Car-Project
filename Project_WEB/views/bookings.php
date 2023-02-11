@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/bookings.css">
+    <link rel="stylesheet" href="../css/HomePage.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 </head>
 <body>
@@ -66,7 +67,7 @@
                       <input type="text" id="cvv" name="cvv" placeholder="352">
                     </div>
                   </div>
-              <input type="submit" value="Cancel!" class="btn1">
+              <input type="submit" value="Cancel!" class="btn1" onclick="window.history.go(-1); return false;" >
                 </div>
       
               </div>
@@ -92,5 +93,19 @@
           </div>
         </div>
       </div>
+  </div>
+      <footer class="secondFooter">
+    <div class="last-row-copyrights">
+            <ul>
+                <li><a href="HomePage.php">Home</a></li>
+                <li><a href="Cars.php">Cars</a></li>
+                <li><a href="ContactUs.php">Contact us</a></li>
+                <li><a href="LoginRegister.php">Login/Register</a></li>
+            </ul>
+
+            <p style="margin-left: 450px;">© 2022 Rent a Car Co. All Rights Reserved.</p>
+
+        </div>
+        </footer>
 </body>
 </html>

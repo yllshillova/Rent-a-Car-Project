@@ -28,7 +28,7 @@
             </div>
 
 
-
+<!-- metoden qe i merr getCars -->
 
             <div class="flip-card">
                 <div class="flip-card-inner">

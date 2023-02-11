@@ -30,37 +30,37 @@
                 <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
-                <form action="#" class="login">
+                <form action="../configurations/loginconfig/loginVerify.php" method="POST" class="login">
                     <div class="field">
-                        <input id="emaili_SignIn" type="text" placeholder="Email Address" required >
+                        <input id="username_SignIn" name="username" type="text" placeholder="Username" required >
                     </div>
                     <div class="field">
-                        <input id="passwordi_SignIn" type="password" placeholder="Password" required>
+                        <input id="passwordi_SignIn" name="password" type="password" placeholder="Password" required>
                     </div>
                     <div class="pass-link">
                         <a href="#">Forgot password?</a>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input class="button_signIn" type="submit" value="Login" onclick="validationSignIn()">
+                        <input class="button_signIn" name="signin-btn" type="submit" value="Login" >
                     </div>
                     <div class="signup-link">
                         Not a member? <a href="">Signup now</a>
                     </div>
                 </form>
-                <form action="#" class="signup">
+                <form action="../configurations/loginconfig/loginVerify.php" method="POST" class="signup">
                     <div class="field">
-                        <input id="emaili_SignUp" type="text" placeholder="Email Address" required>
+                        <input id="username_SignUp" name="signup-username" type="text" placeholder="Username" required>
                     </div>
                     <div class="field">
-                        <input id="passwordi_SignUp" type="password" placeholder="Password" required>
+                        <input id="lastname_SignUp" name="signup-lastname" type="text" placeholder="Lastname" required>
                     </div>
                     <div class="field">
-                        <input id="confirmPasswordi_SignUp" type="password" placeholder="Confirm password" required>
+                        <input id="passwordi_SignUp" name="signup-password" type="password" placeholder="Password" required>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input class="button_signUp" type="submit" value="Signup" onclick="validationSignUp()">
+                        <input class="button_signUp" name="signup-btn" type="submit" value="Signup" >
                     </div>
                 </form>
             </div>

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Contact Us</title>
   <link rel="stylesheet" href="../css/ContactUsStyle.css">
+  <link rel="stylesheet" href="../css/HomePage.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -48,10 +49,21 @@
             </div>
             <div class="button">
               <input type="button" value="Send Now" onclick="validationContactUs()">
-            </div>
+            </div> 
           </form>
         </div>
       </div>
+      <div class="last-row-copyrights">
+            <ul>
+                <li><a href="HomePage.php">Home</a></li>
+                <li><a href="Cars.php">Cars</a></li>
+                <li><a href="ContactUs.php">Contact us</a></li>
+                <li><a href="LoginRegister.php">Login/Register</a></li>
+            </ul>
+
+            <p>© 2022 Rent a Car Co. All Rights Reserved.</p>
+
+        </div>
     </div>
     
     <script src="../js/contact-us.js"></script>

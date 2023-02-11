@@ -17,17 +17,16 @@ signupLink.onclick = (() => {
 });
 
 function validationSignIn() {
-    const emaili_SignIn = document.getElementById('emaili_SignIn').value;
+    const username_SignIn = document.getElementById('username_SignIn').value;
     const passwordi_SignIn = document.getElementById('passwordi_SignIn').value;
-    //Standard email address
-    var regEm = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var regUser = /^[a-zA-Z0-9]{6,}$/;
 
     // USERNAME VALIDATION
     // To check a usernmae between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter
-    var regex_Email = regEm.test(emaili_SignIn);
-    if (!regex_Email) {
+    var regex_Username = regUser.test(username_SignIn);
+    if (!regex_Username) {
 
-        console.log("You have entered an invalid email address!");
+        console.log("You have entered an invalid username!");
     }
     //Password supports special characters and here min length 6 max 20 charters.
     // SECOND REGEX FOR PASSWORD ====  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/   ====
@@ -43,32 +42,31 @@ function validationSignIn() {
 
 
 function validationSignUp() {
-    const emaili_SignUp = document.getElementById('emaili_SignUp').value;
+    const username_SignUp = document.getElementById('username_SignUp').value;
+    const lastname_SignUp = document.getElementById('lastname_SignUp').value;
     const passwordi_SignUp = document.getElementById('passwordi_SignUp').value;
-    const confirmPasswordi_SignUp = document.getElementById('confirmPasswordi_SignUp').value;
-    //Standard email address
-    var regEm = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var regUser = /^[a-zA-Z0-9]{6,}$/;
 
     // USERNAME VALIDATION
     // To check a usernmae between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter
-    var regex_Email = regEm.test(emaili_SignUp);
-    if (!regex_Email) {
+    var regex_Username = regUser.test(username_SignUp);
+    if (!regex_Username) {
 
-        console.log("You have entered an invalid email address!");
+        console.log("You have entered an invalid username!");
     }
     //Password supports special characters and here min length 6 max 20 charters.
     // SECOND REGEX FOR PASSWORD ====  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/   ====
-    var reg_Pass = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
+    var reg_Lastname = /^[a-zA-Z0-9]{6,}$/;
+    var regex_Lastname = reg_Lastname.test(lastname_SignUp)
+    if (!regex_Lastname) {
+        console.log("You have entered an invalid lastname!");
+    }
+    //Password supports special characters and here min length 6 max 20 charters.
+    // SECOND REGEX FOR PASSWORD ====  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/   ====
+    var reg_Pass= /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
     var regex_Password = reg_Pass.test(passwordi_SignUp)
     if (!regex_Password) {
         console.log("You have entered an invalid password!");
-    }
-    //Password supports special characters and here min length 6 max 20 charters.
-    // SECOND REGEX FOR PASSWORD ====  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/   ====
-    var reg_ConPass = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
-    var regex_ConfirmPassword = reg_ConPass.test(confirmPasswordi_SignUp)
-    if (!regex_ConfirmPassword) {
-        console.log("You have entered an invalid confirmation password!");
     }
 
 }

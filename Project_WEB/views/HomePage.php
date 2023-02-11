@@ -72,7 +72,7 @@
                         <p class="p-price-match-guarantee">Found the same deal for less? We’ll match the price.</p>
                     </div>
                     <div class="booking">
-                    <a href="Cars.php">Book yours now!</a>
+                    <a href="Cars.php">Rent yours now!</a>
                 </div>
 
                 </div>
@@ -168,6 +168,9 @@
             to collect the car, the rental company can deliver it wherever we want them to.
         </p>
     </div>
+    <div class="booking1">
+                    <a href="Cars.php">Rent yours now!</a>
+                </div>
     <div class="slider">
         <span id="slide-1"></span>
         <span id="slide-2"></span>
