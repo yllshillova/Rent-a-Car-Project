@@ -1,12 +1,9 @@
 <?php
-
-require '../databaseConfig.php';
-
+require 'databaseConfig.php';
 class UserMapper extends DatabasePDOConfiguration
 {
 
     private $conn;
-    private $query;
 
     public function __construct()
     {

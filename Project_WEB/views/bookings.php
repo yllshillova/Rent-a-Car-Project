@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/bookings.css">
+    <link rel="stylesheet" href="../css/bookings.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/HomePage.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 </head>
@@ -96,13 +100,33 @@
   </div>
       <footer class="secondFooter">
     <div class="last-row-copyrights">
-            <ul>
-                <li><a href="HomePage.php">Home</a></li>
-                <li><a href="Cars.php">Cars</a></li>
-                <li><a href="ContactUs.php">Contact us</a></li>
-                <li><a href="LoginRegister.php">Login/Register</a></li>
-            </ul>
+             <ul>
+            <?php
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+                ?>
+                <li><a href="Dashboard/Dashboard.php">Dashboard</a></li>
+                <?php
+            }
+            ?>
+            <li><a href="HomePage.php">Home</a></li>
+            <li><a href="Cars.php">Cars</a></li>
+            <li><a href="ContactUs.php">Contact</a></li>
 
+            <?php
+            if (!isset($_SESSION["role"])) {
+                ?>
+                <li><a href="LoginRegister.php">Login</a></li>
+                <?php
+            }
+            ?>
+            <?php
+            if (isset($_SESSION["role"])) {
+                ?>
+                <li><a href="../configurations/loginconfig/logout.php">Logout</a></li>
+                <?php
+            }
+            ?>
+        </ul>
             <p style="margin-left: 450px;">© 2022 Rent a Car Co. All Rights Reserved.</p>
 
         </div>

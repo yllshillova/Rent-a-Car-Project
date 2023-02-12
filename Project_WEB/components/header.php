@@ -10,7 +10,7 @@
                     session_start();
                     if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
                         ?>
-                        <li><a href="Dashboard.php">Dashboard</a></li>
+                        <li><a href="Dashboard/Dashboard.php">Dashboard</a></li>
                         <?php
                     }
                     ?>

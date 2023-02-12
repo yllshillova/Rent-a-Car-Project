@@ -15,7 +15,6 @@
     <?php
 
     include '../components/header.php';
-
     ?>
 
     <section class="section2">
@@ -26,25 +25,24 @@
                     <li><a href="#">Available cars for rent</a></li>
                 </ul>
             </div>
-
-
-<!-- metoden qe i merr getCars -->
-
+ 
+            <!-- metoden qe i merr getCars -->
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
-                        <img src="../img/auto1Kategorit.jpg" />
+                        <img src="../img/auto1kategorit.jpg" />
                     </div>
                     <div class="flip-card-back">
                         <img src="../img/auto1Kategorit.jpg" />
-                        <h3 name="carName">BMW 2 Series</h3>
-                        <h1 name="price">$99,90 per day</h1>
+                        <h3 name="carName">Kia Rio</h3>
+                        <h1 name="price">$59,90 per day</h1>
                         <div class="car-booking">
                             <a href="bookings.php">Book yours now!</a>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="flip-card">
                 <div class="flip-card-inner">
@@ -224,7 +222,7 @@
                 </div>
             </div>
 
-        </div>
+            </div>
         </div>
     </section>
     <?php

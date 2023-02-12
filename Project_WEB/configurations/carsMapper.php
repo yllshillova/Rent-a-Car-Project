@@ -1,5 +1,6 @@
+
 <?php
-require '../databaseConfig.php';
+require 'databaseConfig.php';
 
 class CarsMapper extends DatabasePDOConfiguration
 {
@@ -36,7 +37,7 @@ class CarsMapper extends DatabasePDOConfiguration
     public function getAllCars()
     {
 
-        $sql = "select * from user";
+        $sql = "select * from cars";
         $statement = $this->conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -47,21 +48,27 @@ class CarsMapper extends DatabasePDOConfiguration
 
     public function insertCar($car)
     {
-        $sql = "insert into cars(car_name,car_price) values(:carname,:carprice)";
+        $car['car_frontImage'] = '../../img/' .$car['car_frontImage'];
+        $car['car_backImage'] = '../../img/' .$car['car_backImage'];
 
+        $sql = "insert into cars(car_name,car_price,car_frontImage,car_backImage) values(:carname,:carprice,:carfrontImage,:carbackImage)";
         $car_name = $car->getCarName();
         $car_price = $car->getCarPrice();
+        $car_frontImage = $car->getCarFrontImage();
+        $car_backImage = $car->getCarBackImage();
 
         $statement = $this->conn->prepare($sql);
         $statement->bindParam(":carname", $car_name);
         $statement->bindParam(":carprice", $car_price);
+        $statement->bindParam(":carfrontImage", $car_frontImage);
+        $statement->bindParam(":carbackImage", $car_backImage);
         $statement->execute();
-        echo "<script> alert('User has been inserted successfuly!'); </script>";
+        echo "<script> alert('Product has been inserted successfuly!'); </script>";
 
     }
 
     public function deleteCar($car_id){
-        $sql = "delete from car where car_id = :id";
+        $sql = "delete from cars where car_id = :id";
         $statement = $this->conn->prepare($sql);
         $statement->bindParam(":id", $car_id);
         $statement->execute();

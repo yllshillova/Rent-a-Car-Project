@@ -55,10 +55,32 @@
       </div>
       <div class="last-row-copyrights">
             <ul>
-                <li><a href="HomePage.php">Home</a></li>
-                <li><a href="Cars.php">Cars</a></li>
-                <li><a href="ContactUs.php">Contact us</a></li>
-                <li><a href="LoginRegister.php">Login/Register</a></li>
+            <?php
+            session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+                ?>
+                <li><a href="Dashboard/Dashboard.php">Dashboard</a></li>
+                <?php
+            }
+            ?>
+            <li><a href="HomePage.php">Home</a></li>
+            <li><a href="Cars.php">Cars</a></li>
+            <li><a href="ContactUs.php">Contact Us</a></li>
+
+            <?php
+            if (!isset($_SESSION["role"])) {
+                ?>
+                <li><a href="LoginRegister.php">Login</a></li>
+                <?php
+            }
+            ?>
+            <?php
+            if (isset($_SESSION["role"])) {
+                ?>
+                <li><a href="../configurations/loginconfig/logout.php">Logout</a></li>
+                <?php
+            }
+            ?>
             </ul>
 
             <p>© 2022 Rent a Car Co. All Rights Reserved.</p>
