@@ -36,10 +36,6 @@ require_once '../../configurations/userMapper.php';
                     <i class="fas fa-users-cog"></i>
                     <span class="text">Users Management</span>
                 </div>
-
-
-
-
                 <div class="activity">
 
                     <div class="boxx">
@@ -104,59 +100,7 @@ require_once '../../configurations/userMapper.php';
                             </div>
                         </div>
                     </div>
-                    <div class="table">
-                        <table class="styled-table">
-                            <thead>
-                                <tr>
-                                    <th class="heads">User ID</th>
-                                    <th class="heads">User Name</th>
-                                    <th class="heads">User Last Name</th>
-                                    <th class="heads">User Role</th>
-                                    <th class="heads">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-
-                                $model = new UserMapper();
-                                $rows = $model->getAllUsers();
-                                foreach ($rows as $row) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $row['userid'] ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['username']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['userlastname']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['role']; ?>
-                                        </td>
-                                        <td>
-                                            &nbsp;<a href="../../configurations/userconfig/editUser.php?id=<?php echo $row['userid']; ?>"><i
-                                                    class="far fa-edit"></i></a> &nbsp;&nbsp;
-                                            <a href="../../configurations/userconfig/deleteUser.php?id=<?php echo $row['userid']; ?>"><i
-                                                    class="far fa-trash-alt"></i></a>
-                                            <form action="" method="post">
-                                                <button type="submit" name="user_delete" value="<?= $row['userid'] ?>">Delete</button>
-                                            </form>
-
-
-                                        </td>
-                                    </tr>
-
-                                    <?php
-                                }
-
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-            </div>
 
 
 

@@ -1,5 +1,5 @@
 <?php
-include_once '../userconfig/userMapper.php';
+include_once '../userMapper.php';
 include_once '../userconfig/adminUser.php';
 include_once '../userconfig/simpleUser.php';
 session_start();

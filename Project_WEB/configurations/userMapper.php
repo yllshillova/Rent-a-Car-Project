@@ -1,6 +1,6 @@
 <?php
 require 'databaseConfig.php';
-class UserMapper extends DatabasePDOConfiguration
+class UserMapper extends Database
 {
 
     private $conn;
@@ -10,65 +10,103 @@ class UserMapper extends DatabasePDOConfiguration
         $this->conn = $this->getConnection();
     }
 
-    public function getUserByID($userId)
+    public function getUserById($id)
     {
-        $sql = "select * from user where userid = :id";
-        $statement = $this->conn->prepare($sql);
-        $statement->bindParam(":id", $userId);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result;
-    }
 
+        $data = null;
+
+        $query = "SELECT * FROM user WHERE userid = '$id'";
+        if ($sql = $this->conn->query($query)) {
+            while ($row = $sql->fetch_assoc()) {
+                $data = $row;
+            }
+        }
+        return $data;
+    }
     public function getUserByUsername($username)
     {
-        $sql = "select * from user where username = :username";
-        $statement = $this->conn->prepare($sql);
-        $statement->bindParam(":username", $username);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        $data = null;
+        $query = "SELECT * FROM user WHERE username = '$username'";
+        if ($sql = $this->conn->query($query)) {
+            while ($row = $sql->fetch_assoc()) {
+                $data = $row;
+            }
+        }
+        return $data;
     }
-
     public function getAllUsers()
     {
-        $sql = "select * from user";
-        $statement = $this->conn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchAll();
-        return $result;
+        $data = null;
+        $query = "SELECT * FROM user";
+        if ($sql = $this->conn->query($query)) {
+            while ($row = mysqli_fetch_assoc($sql)) {
+                $data[] = $row;
+            }
+        }
+        return $data;
     }
 
     public function insertUser($user)
     {
-        $sql = "insert into user(username,userlastname,role,password) values (:name,:userlastname,:role,:password)";
-
         $username = $user->getUsername();
         $userlastname = $user->getUserLastName();
         $role = $user->getRole();
         $password = $user->getPassword();
-        $pass = password_hash($password, PASSWORD_BCRYPT);
 
-
-        $statement = $this->conn->prepare($sql);
-        $statement->bindParam(":name", $username);
-        $statement->bindParam(":userlastname", $userlastname);
-        $statement->bindParam(":role", $role);
-        $statement->bindParam(":password", $pass);
-        $statement->execute();
-        echo "<script> alert('User has been inserted successfuly!'); </script>";
+        $query = "INSERT INTO user(username, userlastname, role, password) VALUES ('$username','$userlastname', '$role', '$password')";
+        if ($sql = $this->conn->query($query)) {
+            echo "<script>alert('records added successfully');</script>";
+        } else {
+            echo "<script>alert('failed');</script>";
+        }
     }
 
 
-    public function deleteUser($userId)
+
+
+    public function editUser($userid)
     {
-        $sql = "delete from user where id= :id";
-        $statement = $this->conn->prepare($sql);
-        $statement->bindParam(":id", $userId);
-        $statement->execute();
-        echo "<script>alert('delete was successful'); </script>";
 
+        $data = null;
+
+        $query = "SELECT * FROM user WHERE userid = '$userid'";
+        if ($sql = $this->conn->query($query)) {
+            while ($row = $sql->fetch_assoc()) {
+                $data = $row;
+            }
+        }
+        return $data;
     }
+
+    public function updateUser($data)
+    {
+        $userid = $data['userid'];
+        $username = $data->getUsername();
+        $userlastname = $data->getUserLastName();
+        $role = $data->getRole();
+        $password = $data->getPassword();
+
+        $query = "update user set username='$username', userlastname='$userlastname',
+         role='$role', password='$password' where userid='$userid'";
+
+
+        if ($sql = $this->conn->query($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteUser($userid){
+ 
+        $query = "DELETE FROM user where userid = '$userid'";
+        if ($sql = $this->conn->query($query)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 
 
