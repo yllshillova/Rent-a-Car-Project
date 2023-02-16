@@ -9,7 +9,7 @@ class Database{
     private $password = "";
     private function createConnection(){
         try{
-            $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
+            $this->connection = new mysqli($this->host,$this->username,$this->password,$this->database);
         }catch(Exception $ex){
             echo 'connection failed' .$ex->getMessage();
         }    
@@ -17,7 +17,7 @@ class Database{
     }
 
 
-    protected function getConnection(){
+    public function getConnection(){
         $this->createConnection();
         return $this->connection;
     }

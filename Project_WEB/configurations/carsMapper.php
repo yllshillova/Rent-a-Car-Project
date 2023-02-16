@@ -1,6 +1,7 @@
 
+
 <?php
-require 'databaseConfig.php';
+require_once 'databaseConfig.php';
 
 class CarsMapper extends Database
 {
@@ -16,7 +17,7 @@ class CarsMapper extends Database
     {
         $data = null;
 
-        $query = "SELECT * FROM cars WHERE userid = '$car_id'";
+        $query = "SELECT * FROM cars WHERE car_id = '$car_id'";
         if ($sql = $this->conn->query($query)) {
             while ($row = $sql->fetch_assoc()) {
                 $data = $row;
@@ -29,7 +30,7 @@ class CarsMapper extends Database
     public function getCarByCarName($carname)
     {
         $data = null;
-        $query = "SELECT * FROM cars WHERE username = '$carname'";
+        $query = "SELECT * FROM cars WHERE carname = '$carname'";
         if ($sql = $this->conn->query($query)) {
             while ($row = $sql->fetch_assoc()) {
                 $data = $row;
@@ -50,38 +51,14 @@ class CarsMapper extends Database
         return $data;
     }
 
-    // public function insertCar($car)
-    // {
-    //     $car['car_frontImage'] = '../../img/' .$car['car_frontImage'];
-    //     $car['car_backImage'] = '../../img/' .$car['car_backImage'];
-
-    //     $sql = "insert into cars(car_name,car_price,car_frontImage,car_backImage) values(:carname,:carprice,:carfrontImage,:carbackImage)";
-    //     $car_name = $car->getCarName();
-    //     $car_price = $car->getCarPrice();
-    //     $car_frontImage = $car->getCarFrontImage();
-    //     $car_backImage = $car->getCarBackImage();
-
-    //     $statement = $this->conn->prepare($sql);
-    //     $statement->bindParam(":carname", $car_name);
-    //     $statement->bindParam(":carprice", $car_price);
-    //     $statement->bindParam(":carfrontImage", $car_frontImage);
-    //     $statement->bindParam(":carbackImage", $car_backImage);
-    //     $statement->execute();
-    //     echo "<script> alert('Product has been inserted successfuly!'); </script>";
-
-    // }
-
- 
     public function insertCar($car)
     {
         
-        $car['car_frontImage'] = '../../img/' .$car['car_frontImage'];
-        $car['car_backImage'] = '../../img/' .$car['car_backImage'];
 
         $car_name = $car->getCarName();
         $car_price = $car->getCarPrice();
-        $car_frontImage = $car->getCarFrontImage();
-        $car_backImage = $car->getCarBackImage();
+        $car_frontImage ='../img/'.$car->getCarFrontImage();
+        $car_backImage = '../img/'.$car->getCarBackImage();
 
 
         $query = "INSERT INTO cars(car_name, car_price, car_frontImage, car_backImage) 
@@ -97,7 +74,7 @@ class CarsMapper extends Database
 
         $data = null;
 
-        $query = "SELECT * FROM user WHERE car_id = '$car_id'";
+        $query = "SELECT * FROM cars WHERE car_id = '$car_id'";
         if ($sql = $this->conn->query($query)) {
             while ($row = $sql->fetch_assoc()) {
                 $data = $row;
@@ -109,10 +86,10 @@ class CarsMapper extends Database
     public function updateCar($data)
     {
         $car_id = $data['car_id'];
-        $car_name = $data->getCarName();
-        $car_price = $data->getCarPrice();
-        $car_frontImage = $data->getCarFrontImage();
-        $car_backImage = $data->getCarBackImage();
+        $car_name = $data['car_name'];
+        $car_price = $data['car_price'];
+        $car_frontImage = $data['car_frontImage'];
+        $car_backImage = $data['car_backImage'];
 
         $query = "update cars set car_name='$car_name', car_price='$car_price',
         car_frontImage='$car_frontImage', car_backImage='$car_backImage' where car_id='$car_id'";
@@ -125,7 +102,7 @@ class CarsMapper extends Database
         }
     }
     
-    public function deleteUser($car_id){
+    public function deleteCar($car_id){
  
         $query = "DELETE FROM cars where car_id = '$car_id'";
         if ($sql = $this->conn->query($query)) {
@@ -142,3 +119,6 @@ class CarsMapper extends Database
 
 
 ?>
+
+
+

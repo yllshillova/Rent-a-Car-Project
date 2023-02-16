@@ -1,15 +1,12 @@
 <?php
-require 'databaseConfig.php';
+require_once 'databaseConfig.php';
 class UserMapper extends Database
 {
 
     private $conn;
-
-    public function __construct()
-    {
+    public function __construct(){
         $this->conn = $this->getConnection();
     }
-
     public function getUserById($id)
     {
 
@@ -51,8 +48,7 @@ class UserMapper extends Database
         $username = $user->getUsername();
         $userlastname = $user->getUserLastName();
         $role = $user->getRole();
-        $password = $user->getPassword();
-
+        $password = password_hash($user->getPassword(),PASSWORD_BCRYPT); // error while setting it with md5 DO NOT MAKE IT AGAINNNNN 
         $query = "INSERT INTO user(username, userlastname, role, password) VALUES ('$username','$userlastname', '$role', '$password')";
         if ($sql = $this->conn->query($query)) {
             echo "<script>alert('records added successfully');</script>";
@@ -81,10 +77,10 @@ class UserMapper extends Database
     public function updateUser($data)
     {
         $userid = $data['userid'];
-        $username = $data->getUsername();
-        $userlastname = $data->getUserLastName();
-        $role = $data->getRole();
-        $password = $data->getPassword();
+        $username = $data['username'];
+        $userlastname = $data['userlastname'];
+        $role = $data['role'];
+        $password = $data['password'];
 
         $query = "update user set username='$username', userlastname='$userlastname',
          role='$role', password='$password' where userid='$userid'";

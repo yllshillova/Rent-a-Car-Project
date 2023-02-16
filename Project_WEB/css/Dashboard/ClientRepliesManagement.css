@@ -310,72 +310,15 @@ input[type="submit"] {
 }
 
 
-.dash-content .boxes{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-/* boxes css */
-.dash-content .boxes .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 12px;
-    width: calc(100% / 3 - 15px);
-    padding: 15px 20px;
-    background-color: var(--box1-color);
-    transition: var(--tran-05);
-}
-.boxes .box i{
-    font-size: 35px;
-    color: var(--text-color);
-}
-.boxes .box .text{
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-.boxes .box .number{
-    font-size: 40px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-.boxes .box.box2{
-    background-color: var(--box2-color);
-}
-.boxes .box.box3{
-    background-color: var(--box3-color);
-}
-/* hard coded about recent activity css... */
-.dash-content .activity .activity-data{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-.activity .activity-data{
-    display: flex;
-}
-.activity-data .data{
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
-}
-.activity-data .data-title{
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-.activity-data .data .data-list{
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    white-space: nowrap;
-    color: var(--text-color);
+/* action buttons */
+.fa-trash-alt{
+    color: red;
 }
 
+
+.fa-edit{
+    color: #ffbd03;
+}
 @media (max-width: 1000px) {
     nav{
         width: 73px;

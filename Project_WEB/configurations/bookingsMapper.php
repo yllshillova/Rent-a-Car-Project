@@ -1,6 +1,5 @@
-
 <?php
-require 'databaseConfig.php';
+require_once 'databaseConfig.php';
 
 class BookingsMapper extends Database
 {
@@ -50,25 +49,16 @@ class BookingsMapper extends Database
         return $data;
     }
 
-    public function insertCar($booking)
+    public function insertBooking($booking)
     {
-        $client_name = $booking['client_name'];
-        $client_email = $booking['client_email'];
-        $client_address = $booking['client_address'];
-        $city = $booking['city'];
-        $check_in_date = $booking['check_in_date'];
-        $check_out_date = $booking['check_out_date'];
-        $card_name = $booking['card_name'];
-        $card_number = $booking['card_number'];
-        $state = $booking['state'];
-        $zip = $booking['zip'];
-        $cvv = $booking['cvv'];
+        $client_name = $booking->getBookingClientName();
+        $client_email = $booking->getBookingClientEmail();
+        $check_in_date = $booking->getBookingCheck_in_date();
+        $check_out_date = $booking->getBookingCheck_out_date();
+        $car_name = $booking->getBookingCarName();
 
-
-
-
-        $query = "INSERT INTO bookings(client_name, client_email, client_address, city,check_in_date,check_out_date,card_name,card_number,state,zip,cvv) 
-        VALUES ('$client_name','$client_email', '$client_address', '$city','$check_in_date','$check_out_date','$card_name','$card_number','$state','$zip','$cvv')";
+        $query = "INSERT INTO bookings(client_name, client_email,check_in_date,check_out_date,car_name) 
+        VALUES ('$client_name','$client_email','$check_in_date','$check_out_date','$car_name')";
         if ($sql = $this->conn->query($query)) {
             echo "<script>alert('records added successfully');</script>";
         } else {
@@ -93,7 +83,7 @@ class BookingsMapper extends Database
     {
         $query = "UPDATE bookings SET name='$data[client_name]', email='$data[client_email]', address='$data[client_address]', city='$data[city]', 
         check_in_date='$data[check_in_date]',check_out_date='$data[check_out_date]',card_name='$data[card_name]',card_number='$data[card_number]',
-        state='$data[state]',zip='$data[zip]',cvv='$data[cvv]' WHERE booking_ID='$data[booking_ID] '";
+        state='$data[state]',zip='$data[zip]',cvv='$data[cvv]' WHERE booking_ID='$data[booking_ID]'";
  
         if ($sql = $this->conn->query($query)) {
             return true;

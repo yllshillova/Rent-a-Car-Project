@@ -1,6 +1,6 @@
 <?php
 require_once 'person.php';
-
+session_start();
 class SimpleUser extends Person{
 
     public function __construct($username,$userlastname,$password,$role){
@@ -11,6 +11,7 @@ class SimpleUser extends Person{
     public function setSession(){
         $_SESSION['role'] = 0;
         $_SESSION['roleName'] = "SimpleUser";
+        $_SESSION['user'] = 'loggedIn';
     }   
 
     public function setCookie(){

@@ -1,3 +1,10 @@
+<?php
+session_start();
+// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+//     header('Location:../LoginRegister.php');
+// }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +43,53 @@
             </div>
 
             <div class="activity">
+                <div class="boxx">
+                    <a class="submitAdd" href="#divOne">Add new Booking</a>
+                </div>
+                <div class="overlay" id="divOne">
+                    <div class="wrapper">
+                        <h2>Please Fill up The Form</h2><a class="close" href="#">&times;</a>
+                        <div class="content">
+                            <div class="containerr">
+                                <?php
+                                require_once '../../configurations/bookingsMapper.php';
+                                require_once '../../configurations/bookingsconfig/bookings.php';
+                                if (isset($_POST['submit'])) {
+                                    $client_name = $_POST['client_name'];
+                                    $client_email = $_POST['client_email'];
+                                    $check_in_date = $_POST['check_in_date'];
+                                    $check_out_date = $_POST['check_out_date'];
+                                    $car_name = $_POST['car_name'];
+                                    $booking = new Bookings(
+                                        $client_name,
+                                        $client_email,
+                                        $check_in_date,
+                                        $check_out_date,
+                                        $car_name
+                                    );
+                                    $mapper = new BookingsMapper();
+                                    $mapper->insertBooking($booking);
+                                    header('Location: BookingsManagement.php#');
+                                }
+
+                                ?>
+                                <form action="" method="POST">
+                                    <label>Client Name</label>
+                                    <input name="client_name" placeholder="Client name.." type="text">
+                                    <label>Email</label>
+                                    <input name="client_email" placeholder="clientemail@gmail.com" type="text">
+                                    <label>Check in Date</label>
+                                    <input name="check_in_date" placeholder="Ex. 20-04-2020 .." type="date">
+                                    <label>Check out Date</label>
+                                    <input name="check_out_date" placeholder="Ex. 10-05-2020.." type="date">
+                                    <label>Car Name</label>
+                                    <input name="car_name" type="text" id="car_name">
+                                    <input name="submit" class="subBtn" type="submit" value="Submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="table">
                     <table class="styled-table">
                         <thead>
@@ -43,27 +97,52 @@
                                 <th class="heads">ID</th>
                                 <th class="heads">Name</th>
                                 <th class="heads">Email</th>
-                                <th class="heads">Address</th>
-                                <th class="heads">City</th>
                                 <th class="heads">Check-in-date</th>
                                 <th class="heads">Check-out-date</th>
-                                <th class="heads">Card Name</th>
-                                <th class="heads">Card Number</th>
-                                <th class="heads">State</th>
-                                <th class="heads">Zip</th>
-                                <th class="heads">CVV</th>
+                                <th class="heads">Car Name</th>
+                                <th class="heads">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="rows"></td>
-                                <td class="rows"></td>
-                            </tr>
-                            <tr class="active-row">
-                                <td class="rows"></td>
-                                <td class="rows"></td>
-                            </tr>
-                            <!-- and so on... -->
+                            <?php
+                            include_once '../../configurations/bookingsMapper.php';
+                            $mapper = new BookingsMapper();
+                            $allBookings = $mapper->getAllBookings();
+                            foreach ($allBookings as $booking):
+                                ?>
+                                <tr>
+                                    <td class="rows">
+                                        <?php echo $booking['booking_ID'] ?>
+                                    </td>
+                                    <td class="rows">
+                                        <?php echo $booking['client_name']; ?>
+                                    </td>
+                                    <td class="rows">
+                                        <?php echo $booking['client_email']; ?>
+                                    </td>
+                                    <td class="rows">
+                                        <?php echo $booking['check_in_date'] ?>
+                                    </td>
+                                    <td class="rows">
+                                        <?php echo $booking['check_out_date']; ?>
+                                    </td>
+                                    <td class="rows">
+                                        <?php echo $booking['car_name']; ?>
+                                    </td>
+                                    <td class="rows">
+                                        &nbsp;<a
+                                            href="../../configurations/bookingsconfig/editBooking.php?booking_ID=<?php echo $booking['booking_ID']; ?>"><i
+                                                class="far fa-edit"></i></a> &nbsp;&nbsp;
+                                        <a
+                                            href="../../configurations/bookingsconfig/deleteBooking.php?booking_ID=<?php echo $booking['booking_ID']; ?>"><i
+                                                class="far fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+
+                                <?php
+                            endforeach;
+
+                            ?>
                         </tbody>
                     </table>
                 </div>

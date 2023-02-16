@@ -11,6 +11,7 @@ class AdminUser extends Person{
     public function setSession(){
         $_SESSION['role'] = 1;
         $_SESSION['roleName'] = "Administrator";
+        $_SESSION['user'] = 'loggedIn';
     }   
 
     public function setCookie(){

@@ -1,8 +1,8 @@
 <?php
+session_start();
 include_once '../userMapper.php';
 include_once '../userconfig/adminUser.php';
 include_once '../userconfig/simpleUser.php';
-session_start();
 
 if (isset($_POST['signin-btn'])) {
     $login = new LoginLogic($_POST);

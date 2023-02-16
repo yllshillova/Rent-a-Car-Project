@@ -284,6 +284,15 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
 }
 
+/* action buttons */
+.fa-trash-alt{
+    color: red;
+}
+
+
+.fa-edit{
+    color: #ffbd03;
+}
 @media (max-width: 1000px) {
     nav{
         width: 73px;

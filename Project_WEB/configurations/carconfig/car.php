@@ -14,9 +14,8 @@ class Car
         $this->car_frontImage = $car_frontImage;
         $this->car_backImage = $car_backImage;
     }
-
     public function setSession(){
-        $_SESSION['car_name'] = "simpleCar";
+        $_SESSION['car_name'] = "CarProduct";
     }   
     public function setCookie(){
         setcookie("car_name", $this->getCarName(), time() + 2 * 24 * 60 * 60);
@@ -36,6 +35,7 @@ class Car
     public function getCarBackImage(){
         return $this->car_backImage;
     }
+
 
 
 

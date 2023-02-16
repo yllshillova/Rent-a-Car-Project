@@ -195,7 +195,7 @@ nav.close ~ .dashboard .top{
     display: flex;
     align-items: center;
     /* margin between dashboard and recent activity ... */
-    margin: 60px 0 30px 0;
+    margin: 60px 0 30px 70px;
 }
 /* dashboard and recent activity icon css */
 .dash-content .title i{
@@ -212,15 +212,18 @@ nav.close ~ .dashboard .top{
 }
 /* title text css */
 .dash-content .title .text{
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
     margin-left: 10px;
 }
 
+.activity{
+    margin-left: 70px;
+}
 
 
-
+/* pop up form */
 .submitAdd {
 	font-size: 1em;
 	padding: 15px 35px;
@@ -297,8 +300,9 @@ input[type=text], select, input[type=file] {
 	margin-top: 6px;
 	margin-bottom: 16px;
 }
-input[type="submit"] {
-	background-color: #413b3b;
+.subBtn {
+	background-color: #10cc7e;
+    margin-left: 90px;
 	color: #fff;
 	padding: 15px 50px;
 	border: none;
@@ -310,70 +314,94 @@ input[type="submit"] {
 }
 
 
-.dash-content .boxes{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+
+/* ================EDIT Car form=============== */
+.submitAdd {
+	font-size: 1em;
+	padding: 15px 35px;
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+	background: #23bbb3;
+	border-radius: 50px;
 }
-/* boxes css */
-.dash-content .boxes .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 12px;
-    width: calc(100% / 3 - 15px);
-    padding: 15px 20px;
-    background-color: var(--box1-color);
-    transition: var(--tran-05);
+.wrapper2 {
+    margin-left: 70px;
+    padding: 20px;
+	background: #e7e7e7;
+	border-radius: 5px;
+	width: 50%;
+	position: relative;
+	transition: all 5s ease-in-out;
 }
-.boxes .box i{
-    font-size: 35px;
-    color: var(--text-color);
+.wrapper2 h2 {
+	margin-top: 0;
+	color: #333;
 }
-.boxes .box .text{
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-color);
+.wrapper2 .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
 }
-.boxes .box .number{
-    font-size: 40px;
-    font-weight: 500;
-    color: var(--text-color);
+.wrapper2 .close:hover {
+	color: #06D85F;
 }
-.boxes .box.box2{
-    background-color: var(--box2-color);
+.wrapper2 .content {
+	max-height: 30%;
+	overflow: auto;
 }
-.boxes .box.box3{
-    background-color: var(--box3-color);
+/*form*/
+
+.containerr2 {
+	border-radius: 5px;
+	background-color: #e7e7e7;
+	padding: 20px 0;
 }
-/* hard coded about recent activity css... */
-.dash-content .activity .activity-data{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+form label {
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 3px;
 }
-.activity .activity-data{
-    display: flex;
+input[type=text], input[type=file], input[type=password] {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	resize: vertical;
 }
-.activity-data .data{
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
+.submitBtn {
+    margin-left: 150px;
+	background-color: #10cc7e;
+	color: #fff;
+	padding: 15px 50px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	font-size: 18px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
 }
-.activity-data .data-title{
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-color);
+
+
+
+
+/* action buttons */
+.fa-trash-alt{
+    color: red;
 }
-.activity-data .data .data-list{
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    white-space: nowrap;
-    color: var(--text-color);
+
+
+.fa-edit{
+    color: #ffbd03;
 }
 
 @media (max-width: 1000px) {

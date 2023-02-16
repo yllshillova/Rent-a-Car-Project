@@ -78,7 +78,7 @@
     margin-right: 10px;
     margin-bottom: 40px;
     width: 430px;
-    height: 300px;
+    height: 350px;
     perspective: 1000px;
     display: flex;
 }
@@ -113,6 +113,7 @@
 
 .flip-card-front img {
     width: 400px;
+    height: 310px;
     margin-top: 1rem;
 }
 
@@ -124,6 +125,7 @@
 
 .flip-card-back img {
     width: 340px;
+    height: 240px;
     margin-top: 1rem;
 }
 
@@ -138,12 +140,12 @@
 
 .flip-card-inner .flip-card-back .car-booking {
     /* position:relative;
-    top: 18px;
-    margin-left: 10px; */
+    top: 18px; */
     display: flex;
     flex-direction: column;
     width: 200px;
     margin-left: 115px;
+    margin-top: 3px;
 }
 
 .flip-card-inner .flip-card-back .car-booking a {
@@ -151,9 +153,182 @@
     color: #fff;
     font-family: "Poppins", sans-serif;
     transition: .3s ease;
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     text-decoration: none;
     font-weight: 500;
 
+}
+
+
+
+/* Add new user pop up */
+
+
+.row {
+    display: -ms-flexbox;
+    /* IE10 */
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 89%;
+}
+
+.col-25 {
+    -ms-flex: 25%;
+    /* IE10 */
+    flex: 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%;
+    /* IE10 */
+    flex: 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%;
+    /* IE10 */
+    flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+    padding: 0 16px;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+}
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+.wrapper {
+    margin: 50px auto;
+    padding: 20px;
+    background: #e7e7e7;
+    border-radius: 5px;
+    width: 60%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+.wrapper .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+.wrapper .close:hover {
+	color: #06D85F;
+}
+.wrapper h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.wrapper .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.wrapper .close:hover {
+    color: #06D85F;
+}
+
+.wrapper .content {
+    max-height: 90%;
+    overflow: auto;
+}
+
+/*form*/
+
+.containerr {
+    border-radius: 5px;
+    background-color: #e7e7e7;
+    padding: 20px 0;
+}
+
+form label {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+input[type=text],
+select,
+input[type=password],
+input[type=date],
+p {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+.btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px;
+    margin: 10px 0px;
+    margin-left: 3px;
+    border: none;
+    width: 49%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn1 {
+    background-color: orange;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 49%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn1:hover {
+    background-color: orangered;
+}
+
+span.price {
+    float: right;
+    color: grey;
+}
+
+.rent {
+    margin-left: 202px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 3px;
 }

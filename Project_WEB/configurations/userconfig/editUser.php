@@ -1,6 +1,3 @@
-<?php
-require_once '../../configurations/userMapper.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +19,7 @@ require_once '../../configurations/userMapper.php';
 
 <body>
     <?php
-    include '../../views/Dashboard/sidebar.php';
+    include '../../views/Dashboard/actionsSidebar.php';
     ?>
     <section class="dashboard">
         <div class="top">
@@ -37,18 +34,16 @@ require_once '../../configurations/userMapper.php';
                     <span class="text">Users Management</span>
                 </div>
                 <div class="activity">
-
-                 
-                    <div class="overlay" id="divOne">
-                        <div class="wrapper">
-                            <h2>User Updating form</h2><a class="close" href="#">&times;</a>
+                    <div class="overlay2" id="divOne">
+                        <div class="wrapper2">
+                            <h2>User Updating form</h2>
                             <div class="content">
-                                <div class="containerr">
+                                <div class="containerr2">
                                     <?php
                                     require_once '../UserMapper.php';
-                                    $user = new UserMapper();
+                                    $mapper = new UserMapper();
                                     $id = $_REQUEST['userid'];
-                                    $row = $user->editUser($id);
+                                    $user = $mapper->editUser($id);
                                     if (isset($_POST['update'])) {
                                         if (
                                             isset($_POST['username']) && isset($_POST['userlastname']) &&
@@ -59,33 +54,32 @@ require_once '../../configurations/userMapper.php';
                                             $data['userlastname'] = $_POST['userlastname'];
                                             $data['role'] = $_POST['role'];
                                             $data['password'] = $_POST['password'];
-                                            $update = $model->updateUser($data);
+                                            $update = $mapper->updateUser($data);
                                             if ($update) {
                                                 echo "<script>alert('record update successfully');</script>";
-                                                header('../../views/Dashboard/Usersmanagement.php');
+                                                echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
                                             } else {
                                                 echo "<script>alert('record update failed');</script>";
-                                                header('../../views/Dashboard/Usersmanagement.php');
+                                                echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
                                             }
                                         } else {
-                                            echo "gabim";
                                             echo "<script>alert('empty');</script>";
-                                            header("Location: ../../configurations/userconfig/editUser.php?id=$id");
+                                            echo "<script>window.location.href = ' ../../configurations/userconfig/editUser.php?userid=$id';</script>";
                                         }
                                     }
 
 
                                     ?>
-                                    <form method="POST">
+                                    <form action="" method="POST">
                                         <label>User First Name</label>
-                                        <input name="username" placeholder="User name.." type="text" value="<?php echo $row['username']; ?>">
+                                        <input name="username" placeholder="User name.." type="text" value="<?php echo $user['username']; ?>">
                                         <label>User Last Name</label>
-                                        <input name="userlastname" placeholder="User last name.." type="text" value="<?php echo $row['userlastname']; ?>">
+                                        <input name="userlastname" placeholder="User last name.." type="text" value="<?php echo $user['userlastname']; ?>">
                                         <label>User password</label>
-                                        <input name="password" placeholder="User password.." type="password" value="<?php echo $row['password']; ?>">
+                                        <input name="password" placeholder="User password.." type="password" value="<?php echo $user['password']; ?>">
                                         <label>User role</label>
-                                        <input name="role" placeholder="User role.." type="text" value="<?php echo $row['role']; ?>">
-                                        <input name="update" type="submit" value="Submit">
+                                        <input name="role" placeholder="User role.." type="text" value="<?php echo $user['role']; ?>">
+                                        <input name="update" class="submitBtn" type="submit" value="Submit">
                                     </form>
                                 </div>
                             </div>
@@ -104,34 +98,3 @@ require_once '../../configurations/userMapper.php';
 
 
 </html>
-<!-- if (isset($_POST['submit'])) {
-                                        $username = $_POST['username'];
-                                        $userlastname = $_POST['userlastname'];
-                                        $password = $_POST['password'];
-                                        $role = $_POST['role'];
-                                        if ($role == 1) {
-                                            $user = new AdminUser(
-                                                $username,
-                                                $userlastname,
-                                                $role,
-                                                $password
-                                            );
-
-                                            $mapper = new UserMapper();
-                                            $mapper->insertUser($user);
-                                            header('Location: Usersmanagement.php#');
-                                        } else {
-                                            $user = new SimpleUser(
-                                                $username,
-                                                $userlastname,
-                                                $role,
-                                                $password
-                                            );
-
-                                            $mapper = new UserMapper();
-                                            $mapper->insertUser($user);
-                                            header('Location: Usersmanagement.php#');
-                                        }
-
-
-                                    } -->

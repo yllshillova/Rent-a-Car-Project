@@ -1,3 +1,11 @@
+<?php
+session_start();
+// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+//     header('Location:../LoginRegister.php');
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +37,7 @@
             <div class="overview">
                 <div class="title">
                     <i class="fas fa-car-side"></i>
-                    <span class="text">Car Management </span>
+                    <span class="text">Cars Management </span>
                 </div>
 
 
@@ -44,16 +52,36 @@
                             <h2>Please Fill up The Form</h2><a class="close" href="#">&times;</a>
                             <div class="content">
                                 <div class="containerr">
-                                    <form>
+                                    <?php
+                                    require_once '../../configurations/carsMapper.php';
+                                    require_once '../../configurations/carconfig/car.php';
+                                    if (isset($_POST['submit'])) {
+                                        $car_name = $_POST['car_name'];
+                                        $car_price = $_POST['car_price'];
+                                        $car_frontImage = $_POST['car_frontImage'];
+                                        $car_backImage = $_POST['car_backImage'];
+                                            $car = new Car(
+                                                $car_name,
+                                                $car_price,
+                                                $car_frontImage,
+                                                $car_backImage
+                                            );
+                                            $mapper = new CarsMapper();
+                                            $mapper->insertCar($car);
+                                            header('Location: CarsManagement.php#');
+                                        } 
+
+                                    ?>
+                                    <form action="" method="POST">
                                         <label>Car name</label>
-                                        <input placeholder="Car name.." type="text">
+                                        <input name="car_name" placeholder="Car name.." type="text">
                                         <label>Car price</label>
-                                        <input placeholder="Car price.." type="text">
+                                        <input name="car_price" placeholder="Car price.." type="text">
                                         <label>Car front Image</label>
-                                        <input placeholder="Choose back image photo" type="file">
+                                        <input name="car_frontImage" type="file">
                                         <label>Car back Image</label>
-                                        <input placeholder="Choose front image photo" type="file">
-                                        <input type="submit" value="Submit">
+                                        <input name="car_backImage" type="file">
+                                        <input name="submit" class="subBtn" type="submit" value="Submit">
                                     </form>
                                 </div>
                             </div>
@@ -68,18 +96,46 @@
                                     <th class="heads">Car Price</th>
                                     <th class="heads">Car Front Image</th>
                                     <th class="heads">Car Back Image</th>
+                                    <th class="heads">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="rows"></td>
-                                    <td class="rows"></td>
-                                </tr>
-                                <tr class="active-row">
-                                    <td class="rows"></td>
-                                    <td class="rows"></td>
-                                </tr>
-                                <!-- and so on... -->
+                                <?php
+                                include_once '../../configurations/carsMapper.php';
+                                $cars = new CarsMapper();
+                                $allCars = $cars->getAllCars();
+                                foreach ($allCars as $car) {
+                                    ?>
+                                    <tr>
+                                        <td class="rows">
+                                            <?php echo $car['car_id'] ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $car['car_name']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $car['car_price']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $car['car_frontImage']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $car['car_backImage']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            &nbsp;<a
+                                                href="../../configurations/carconfig/editCar.php?car_id=<?php echo $car['car_id']; ?>"><i
+                                                    class="far fa-edit"></i></a> &nbsp;&nbsp;
+                                            <a
+                                                href="../../configurations/carconfig/deleteCar.php?car_id=<?php echo $car['car_id']; ?>"><i
+                                                    class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                }
+
+                                ?>
                             </tbody>
                         </table>
                     </div>

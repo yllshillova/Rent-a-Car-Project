@@ -177,7 +177,7 @@ nav.close ~ .dashboard{
     padding: 10px 14px;
     background-color: var(--panel-color);
     transition: var(--tran-05);
-    z-index: 10;
+    /* z-index: 10; */
 }
 nav.close ~ .dashboard .top{
     left: 73px;
@@ -195,7 +195,7 @@ nav.close ~ .dashboard .top{
     display: flex;
     align-items: center;
     /* margin between dashboard and recent activity ... */
-    margin: 60px 0 30px 0;
+    margin: 60px 0 30px 70px;
 }
 /* dashboard and recent activity icon css */
 .dash-content .title i{
@@ -217,70 +217,191 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
     margin-left: 10px;
 }
-.dash-content .boxes{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+
+
+.activity{
+    margin-left: 70px;
 }
-/* boxes css */
-.dash-content .boxes .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 12px;
-    width: calc(100% / 3 - 15px);
-    padding: 15px 20px;
-    background-color: var(--box1-color);
-    transition: var(--tran-05);
+
+/* pop up form */
+.submitAdd {
+	font-size: 1em;
+	padding: 15px 35px;
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+	background: #23bbb3;
+	border-radius: 50px;
 }
-.boxes .box i{
-    font-size: 35px;
-    color: var(--text-color);
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
 }
-.boxes .box .text{
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-color);
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
 }
-.boxes .box .number{
-    font-size: 40px;
-    font-weight: 500;
-    color: var(--text-color);
+.wrapper {
+	margin: 5px auto;
+	padding: 20px;
+	background: #e7e7e7;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
 }
-.boxes .box.box2{
-    background-color: var(--box2-color);
+.wrapper h2 {
+	margin-top: 0;
+	color: #333;
 }
-.boxes .box.box3{
-    background-color: var(--box3-color);
+.wrapper .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
 }
-/* hard coded about recent activity css... */
-.dash-content .activity .activity-data{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.wrapper .close:hover {
+	color: #06D85F;
 }
-.activity .activity-data{
-    display: flex;
+.wrapper .content {
+	max-height: 30%;
+	overflow: auto;
 }
-.activity-data .data{
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
+/*form*/
+
+.containerr {
+	border-radius: 5px;
+	background-color: #e7e7e7;
+	padding: 20px 0;
 }
-.activity-data .data-title{
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-color);
+form label {
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 3px;
 }
-.activity-data .data .data-list{
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    white-space: nowrap;
-    color: var(--text-color);
+input[type=text], select, input[type=file] {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+}
+.subBtn {
+	background-color: #10cc7e;
+    margin-left: 90px;
+	color: #fff;
+	padding: 15px 50px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+
+
+/* ================EDIT Car form=============== */
+.submitAdd {
+	font-size: 1em;
+	padding: 15px 35px;
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+	background: #23bbb3;
+	border-radius: 50px;
+}
+.wrapper2 {
+    margin-left: 70px;
+    padding: 20px;
+	background: #e7e7e7;
+	border-radius: 5px;
+	width: 50%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+.wrapper2 h2 {
+	margin-top: 0;
+	color: #333;
+}
+.wrapper2 .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+.wrapper2 .close:hover {
+	color: #06D85F;
+}
+.wrapper2 .content {
+	max-height: 30%;
+	overflow: auto;
+}
+/*form*/
+
+.containerr2 {
+	border-radius: 5px;
+	background-color: #e7e7e7;
+	padding: 20px 0;
+}
+form label {
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 3px;
+}
+input[type=text], input[type=date], input[type=password] {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	resize: vertical;
+}
+.submitBtn {
+    margin-left: 140px;
+	background-color: #10cc7e;
+	color: #fff;
+	padding: 15px 50px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	font-size: 18px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+
+
+
+/* action buttons */
+.fa-trash-alt{
+    color: red;
+}
+
+
+.fa-edit{
+    color: #ffbd03;
 }
 
 @media (max-width: 1000px) {
@@ -326,6 +447,18 @@ nav.close ~ .dashboard .top{
         overflow-X: scroll;
     }
 }
+
+
+/* action buttons */
+.fa-trash-alt{
+    color: red;
+}
+
+
+.fa-edit{
+    color: #ffbd03;
+}
+
 
 @media (max-width: 780px) {
     .dash-content .boxes .box{

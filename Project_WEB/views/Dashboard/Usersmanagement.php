@@ -10,11 +10,9 @@ require_once '../../configurations/userMapper.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!----======== CSS ======== -->
     <link rel="stylesheet" href="../../css/Dashboard/Usersmanagement.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../../css/Dashboard/tables.css?v=<?php echo time(); ?>">
 
-    <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
     <title>Admin Dashboard Panel</title>
@@ -97,8 +95,12 @@ require_once '../../configurations/userMapper.php';
                                         <label>User password</label>
                                         <input name="password" placeholder="User password.." type="password">
                                         <label>User role</label>
-                                        <input name="role" placeholder="User role.." type="text">
-                                        <input name="submit" type="submit" value="Submit">
+                                        <select id="">
+                                            <option value="">--Select Role--</option>
+                                            <option name="role" value="1">Admin</option>
+                                            <option name="role" value="0">User</option>
+                                        </select>
+                                        <input class="subBtn" name="submit" type="submit" value="Submit">
                                     </form>
                                 </div>
                             </div>
@@ -123,28 +125,25 @@ require_once '../../configurations/userMapper.php';
                                 foreach ($rows as $row) {
                                     ?>
                                     <tr>
-                                        <td>
+                                        <td class="rows">
                                             <?php echo $row['userid'] ?>
                                         </td>
-                                        <td>
+                                        <td class="rows">
                                             <?php echo $row['username']; ?>
                                         </td>
-                                        <td>
+                                        <td class="rows">
                                             <?php echo $row['userlastname']; ?>
                                         </td>
-                                        <td>
+                                        <td class="rows">
                                             <?php echo $row['role']; ?>
                                         </td>
-                                        <td>
-                                            &nbsp;<a href="../../configurations/userconfig/editUser.php?id=<?php echo $row['userid']; ?>"><i
+                                        <td class="rows">
+                                            &nbsp;<a
+                                                href="../../configurations/userconfig/editUser.php?userid=<?php echo $row['userid']; ?>"><i
                                                     class="far fa-edit"></i></a> &nbsp;&nbsp;
-                                            <a href="../../configurations/userconfig/deleteUser.php?id=<?php echo $row['userid']; ?>"><i
+                                            <a
+                                                href="../../configurations/userconfig/deleteUser.php?userid=<?php echo $row['userid']; ?>"><i
                                                     class="far fa-trash-alt"></i></a>
-                                            <form action="" method="post">
-                                                <button type="submit" name="user_delete" value="<?= $row['userid'] ?>">Delete</button>
-                                            </form>
-
-
                                         </td>
                                     </tr>
 
