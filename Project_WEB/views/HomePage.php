@@ -1,3 +1,6 @@
+<?php 
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -190,7 +193,7 @@
 <?php
 
 include '../components/footer.php';
-
+ob_end_flush();
 ?>
     <script src="../js/FAQ's.js"></script>
     <script src="../js/footer.js"></script>

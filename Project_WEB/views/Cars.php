@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 // if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
 //     header('Location:LoginRegister.php');
 // }
@@ -62,10 +62,13 @@
                 ?>
             <?php endforeach;
             ?>
+
+
+
             <?php
             require_once '../configurations/bookingsMapper.php';
             require_once '../configurations/bookingsconfig/bookings.php';
-            if (isset($_POST['bookSubmit'])) {
+            if (isset($_POST['subBooking'])) {
                 $client_name = $_POST['client_name'];
                 $client_email = $_POST['client_email'];
                 $check_in_date = $_POST['check_in_date'];
@@ -106,7 +109,7 @@
                                             <!-- <p>Total <span class="price" style="color:black"><b></b></span></p> -->
 
 
-                                            <input name="bookSubmit" type="submit" id="bookCar"
+                                            <input name="subBooking" type="submit" id="bookCar"
                                                 value="Book your car now!" class="btn">
                                             <input type="submit" value="Cancel!" class="btn1"
                                                 onclick="window.history.go(-1); ">
@@ -323,7 +326,7 @@
     <?php
 
     include '../components/footer.php';
-
+    ob_end_flush();
     ?>
 </body>
 

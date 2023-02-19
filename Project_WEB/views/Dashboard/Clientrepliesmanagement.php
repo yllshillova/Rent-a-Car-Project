@@ -51,18 +51,37 @@ session_start();
                                 <tr>
                                     <th class="heads">Client ID</th>
                                     <th class="heads" style="width: 500px;">Client Message</th>
+                                    <th class="heads" >Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="rows"></td>
-                                    <td class="rows"></td>
-                                </tr>
-                                <tr class="active-row">
-                                    <td class="rows"></td>
-                                    <td class="rows"></td>
-                                </tr>
-                                <!-- and so on... -->
+                            <?php
+                                include_once '../../configurations/clientRepliesMapper.php';
+                                $mapper = new ClientRepliesMapper();
+                                $allReplies = $mapper->getAllClientReplies();
+                                foreach ($allReplies as $messages) {
+                                    ?>
+                                    <tr>
+                                        <td class="rows">
+                                            <?php echo $messages['client_ID'] ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $messages['client_message']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            &nbsp;<a
+                                                href="../../configurations/clientrepliesconfig/editReply.php?client_ID=<?php echo $messages['client_ID']; ?>"><i
+                                                    class="far fa-edit"></i></a> &nbsp;&nbsp;
+                                            <a
+                                                href="../../configurations/clientrepliesconfig/deleteReply.php?client_ID=<?php echo $messages['client_ID']; ?>"><i
+                                                    class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                }
+
+                                ?>
                             </tbody>
                         </table>
                     </div>

@@ -54,18 +54,43 @@ session_start();
                                     <th class="heads">Client Full Name</th>
                                     <th class="heads">Client Email address</th>
                                     <th class="heads">Client Message</th>
+                                    <th class="heads">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="rows"></td>
-                                    <td class="rows"></td>
-                                </tr>
-                                <tr class="active-row">
-                                    <td class="rows"></td>
-                                    <td class="rows"></td>
-                                </tr>
-                                <!-- and so on... -->
+                            <?php
+                                include_once '../../configurations/contact_usMapper.php';
+                                $mapper = new ContactUsMapper();
+                                $allMessages = $mapper->getAllClientPreferences();
+                                foreach ($allMessages as $messages) {
+                                    ?>
+                                    <tr>
+                                        <td class="rows">
+                                            <?php echo $messages['client_id'] ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $messages['client_fullname']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $messages['client_email'] ?>
+                                        </td>
+                                        <td class="rows">
+                                            <?php echo $messages['client_message']; ?>
+                                        </td>
+                                        <td class="rows">
+                                            &nbsp;<a
+                                                href="../../configurations/contactusconfig/editPreference.php?client_id=<?php echo $messages['client_id']; ?>"><i
+                                                    class="far fa-edit"></i></a> &nbsp;&nbsp;
+                                            <a
+                                                href="../../configurations/contactusconfig/deletePreference.php?client_id=<?php echo $messages['client_id']; ?>"><i
+                                                    class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                }
+
+                                ?>
                             </tbody>
                         </table>
                     </div>

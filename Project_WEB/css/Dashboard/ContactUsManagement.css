@@ -196,7 +196,7 @@ nav.close ~ .dashboard .top{
     display: flex;
     align-items: center;
     /* margin between dashboard and recent activity ... */
-    margin: 60px 0 30px 0;
+    margin: 60px 0 30px 70px;
 }
 /* dashboard and recent activity icon css */
 .dash-content .title i{
@@ -219,6 +219,10 @@ nav.close ~ .dashboard .top{
     margin-left: 10px;
 }
 
+
+.activity{
+    margin-left: 70px;
+}
 
 
 /* action buttons */

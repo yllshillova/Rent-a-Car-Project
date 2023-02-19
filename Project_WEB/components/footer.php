@@ -8,15 +8,25 @@
             <img src="../img/qualified2.webp" alt="">
             <img src="../img/qualified3.svg" alt="">
         </div>
-
-        <div class="send-message">
-            <h3 class="h3-message">Leave us a message</h3>
-            <textarea id="send_message" name="message" id="message" cols="30" rows="5"
-                placeholder="How was ur experience..."></textarea>
-
-        </div>
-        <div class="send-button">
-            <input type="submit" id="send" name="send" value="Send" onclick="validationFooter()">
+        <?php
+        require_once '../configurations/clientRepliesMapper.php';
+        require_once '../configurations/clientrepliesconfig/reply.php';
+        if (isset($_POST['submit'])) {
+            $client_message = $_POST['client_message'];
+            $reply = new Reply(
+                $client_message
+            );
+            $mapper = new ClientRepliesMapper();
+            $mapper->insertReply($reply);
+        }
+        ?>
+        <div class="send-message ">
+            <form action="#" method="POST">
+                <h3 class="h3-message">Leave us a message</h3>
+                <textarea id="send_message" name="client_message" id="message" cols="30" rows="5"
+                    placeholder="How was ur experience..."></textarea>
+                <input name="submit" type="submit" id="send" value="Send">
+            </form>
         </div>
     </div>
     <hr>

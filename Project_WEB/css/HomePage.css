@@ -645,7 +645,7 @@ header {
 .h3-message{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    text-align: center; 
+    text-align:left; 
 }
 
 #message{
@@ -660,8 +660,9 @@ header {
 }
 
 #send{
+    position: relative;
+    bottom: 30px;
     background-color:#a6fd5f;
-    margin-top: 80px;
     margin-left: 70px;
     height: 40px;
     width: 100px;

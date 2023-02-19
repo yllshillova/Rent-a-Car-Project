@@ -1,6 +1,6 @@
 
 <?php
-require 'databaseConfig.php';
+require_once 'databaseConfig.php';
 
 class ClientRepliesMapper extends Database
 {
@@ -38,6 +38,47 @@ class ClientRepliesMapper extends Database
     }
 
  
+    public function insertReply($reply)
+    {
+        
+        $client_message =$reply->getClientMessage();
+
+
+        $query = "INSERT INTO client_replies(client_message) 
+        VALUES ('$client_message')";
+        if ($sql = $this->conn->query($query)) {
+            echo "<script>alert('reply sent successfully');</script>";
+            header('Location:HomePage.php');
+        } else {
+            echo "<script>alert('failed');</script>";
+        }
+    }
+    public function editReply($client_ID)
+    {
+
+        $data = null;
+
+        $query = "SELECT * FROM client_replies WHERE client_ID = '$client_ID'";
+        if ($sql = $this->conn->query($query)) {
+            while ($row = $sql->fetch_assoc()) {
+                $data = $row;
+            }
+        }
+        return $data;
+    }
+
+    public function updateReply($data)
+    {
+        $client_message = $data['client_message'];;
+
+        $query = "update client_replies set  client_message='$client_message'";
+
+        if ($sql = $this->conn->query($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     public function deleteReply($client_id){
  

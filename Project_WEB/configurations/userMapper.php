@@ -51,8 +51,10 @@ class UserMapper extends Database
         $password = password_hash($user->getPassword(),PASSWORD_BCRYPT); // error while setting it with md5 DO NOT MAKE IT AGAINNNNN 
         $query = "INSERT INTO user(username, userlastname, role, password) VALUES ('$username','$userlastname', '$role', '$password')";
         if ($sql = $this->conn->query($query)) {
+            $_SESSION['message']= "Admin/User added succesfully";
             echo "<script>alert('records added successfully');</script>";
         } else {
+            $_SESSION['message']= "Admin/User not added";
             echo "<script>alert('failed');</script>";
         }
     }

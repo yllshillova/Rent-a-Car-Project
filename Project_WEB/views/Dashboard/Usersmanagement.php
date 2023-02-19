@@ -39,7 +39,7 @@ require_once '../../configurations/userMapper.php';
 
 
                 <div class="activity">
-
+                        <?php include_once('message.php');?> <!-- not being showed!!!!!!!!!!!!!!!!! -->
                     <div class="boxx">
                         <a class="submitAdd" href="#divOne">Add new User</a>
                     </div>
@@ -66,7 +66,7 @@ require_once '../../configurations/userMapper.php';
                                                 $role,
                                                 $password
                                             );
-
+                                            $user->setSession();
                                             $mapper = new UserMapper();
                                             $mapper->insertUser($user);
                                             header('Location: Usersmanagement.php#');
@@ -77,7 +77,7 @@ require_once '../../configurations/userMapper.php';
                                                 $role,
                                                 $password
                                             );
-
+                                            $user->setSession();
                                             $mapper = new UserMapper();
                                             $mapper->insertUser($user);
                                             header('Location: Usersmanagement.php#');

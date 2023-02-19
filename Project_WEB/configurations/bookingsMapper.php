@@ -81,9 +81,8 @@ class BookingsMapper extends Database
 
     public function updateBooking($data)
     {
-        $query = "UPDATE bookings SET name='$data[client_name]', email='$data[client_email]', address='$data[client_address]', city='$data[city]', 
-        check_in_date='$data[check_in_date]',check_out_date='$data[check_out_date]',card_name='$data[card_name]',card_number='$data[card_number]',
-        state='$data[state]',zip='$data[zip]',cvv='$data[cvv]' WHERE booking_ID='$data[booking_ID]'";
+        $query = "UPDATE bookings SET name='$data[client_name]', email='$data[client_email]',
+        check_in_date='$data[check_in_date]',check_out_date='$data[check_out_date]' WHERE booking_ID='$data[booking_ID]'";
  
         if ($sql = $this->conn->query($query)) {
             return true;
