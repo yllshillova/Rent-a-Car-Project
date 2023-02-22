@@ -3,12 +3,12 @@ require_once 'person.php';
 session_start();
 class SimpleUser extends Person{
 
-    public function __construct($username,$userlastname,$password,$role){
-        parent::__construct($username, $userlastname, $password, $role);
+    public function __construct($username,$userlastname,$role,$password){
+        parent::__construct($username, $userlastname,$role,$password);
 
     }
 
-    public function setSession(){
+    public function setSession($username, $role){
         $_SESSION['role'] = 0;
         $_SESSION['roleName'] = "SimpleUser";
         $_SESSION['user'] = 'loggedIn';

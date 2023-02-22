@@ -39,7 +39,8 @@ require_once '../../configurations/userMapper.php';
 
 
                 <div class="activity">
-                        <?php include_once('message.php');?> <!-- not being showed!!!!!!!!!!!!!!!!! -->
+                    <?php include_once('message.php'); ?>
+                    <!-- not being showed!!!!!!!!!!!!!!!!! -->
                     <div class="boxx">
                         <a class="submitAdd" href="#divOne">Add new User</a>
                     </div>
@@ -59,25 +60,25 @@ require_once '../../configurations/userMapper.php';
                                         $userlastname = $_POST['userlastname'];
                                         $password = $_POST['password'];
                                         $role = $_POST['role'];
-                                        if ($role == 1) {
+                                        if ($role === '1') {
                                             $user = new AdminUser(
                                                 $username,
                                                 $userlastname,
                                                 $role,
                                                 $password
                                             );
-                                            $user->setSession();
+                                            $user->setSession($username,$role);
                                             $mapper = new UserMapper();
                                             $mapper->insertUser($user);
                                             header('Location: Usersmanagement.php#');
-                                        } else {
+                                        } else if($role === '0') {
                                             $user = new SimpleUser(
                                                 $username,
                                                 $userlastname,
                                                 $role,
                                                 $password
                                             );
-                                            $user->setSession();
+                                            $user->setSession($username,$role);
                                             $mapper = new UserMapper();
                                             $mapper->insertUser($user);
                                             header('Location: Usersmanagement.php#');
@@ -87,6 +88,7 @@ require_once '../../configurations/userMapper.php';
                                     }
 
                                     ?>
+
                                     <form method="POST">
                                         <label>User First Name</label>
                                         <input name="username" placeholder="User name.." type="text">
@@ -95,13 +97,15 @@ require_once '../../configurations/userMapper.php';
                                         <label>User password</label>
                                         <input name="password" placeholder="User password.." type="password">
                                         <label>User role</label>
-                                        <select id="">
+                                        <input name="role" placeholder="User name.." type="text">
+                                        <input class="subBtn" name="submit" type="submit" value="Submit">
+                                    </form>
+                                    
+                                    <!-- <select id="">
                                             <option value="">--Select Role--</option>
                                             <option name="role" value="1">Admin</option>
                                             <option name="role" value="0">User</option>
-                                        </select>
-                                        <input class="subBtn" name="submit" type="submit" value="Submit">
-                                    </form>
+                                        </select> -->
                                 </div>
                             </div>
                         </div>

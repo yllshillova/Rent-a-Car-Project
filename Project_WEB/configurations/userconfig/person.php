@@ -4,17 +4,17 @@ abstract class Person{
 
     protected $username;
     protected $userlastname;
-    protected $password;
     protected $role;
+    protected $password;
 
-    public function __construct($username,$userlastname,$password,$role){
+    public function __construct($username,$userlastname,$role,$password){
         $this->username = $username;
         $this->userlastname = $userlastname;
-        $this->password = $password;
         $this->role = $role;
+        $this->password = $password;
     }
 
-    abstract protected function setSession();
+    abstract protected function setSession($username, $role);
 
     abstract protected function setCookie();
 

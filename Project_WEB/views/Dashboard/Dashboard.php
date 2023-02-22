@@ -28,6 +28,11 @@ session_start();
     <?php
     include 'sidebar.php';
     ?>
+    <?php  
+
+        echo "User is: ".$_SESSION["user"];  
+
+?>  
     <section class="dashboard">
         <div class="top">
             <i class="fas fa-bars sidebar-toggle"></i>

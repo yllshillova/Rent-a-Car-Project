@@ -69,9 +69,10 @@ class ClientRepliesMapper extends Database
 
     public function updateReply($data)
     {
-        $client_message = $data['client_message'];;
+        $client_ID = $data['client_ID'];
+        $client_message = $data['client_message'];
 
-        $query = "update client_replies set  client_message='$client_message'";
+        $query = "update client_replies set client_message='$client_message' where client_ID = '$client_ID'";
 
         if ($sql = $this->conn->query($query)) {
             return true;

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include_once '../userMapper.php';
 include_once '../userconfig/adminUser.php';
@@ -31,7 +32,8 @@ class LoginLogic
     {
         if ($this->verifyEmptyData($this->username, $this->password)) {
             header("Location:../../views/LoginRegister.php");
-        } else if ($this->verifyCorrectData($this->username, $this->password)) {
+        } 
+        else if ($this->verifyCorrectData($this->username, $this->password)) {
             header("Location: ../../views/HomePage.php");
         } else {
             header("Location: ../../views/LoginRegister.php");
@@ -52,18 +54,21 @@ class LoginLogic
     {
         $mapper = new UserMapper();
         $user = $mapper->getUserByUsername($username);
+        echo "User is: ".$user;  
+
         if ($user == null || count($user) == 0)
             return false;
-        else if (password_verify($password, $user['password'])) {
+        else if (password_verify($password,$user['password'])){
             if ($user['role'] == 1) {
-                $obj = new AdminUser($user['username'],$user['userlastname'], $user['password'], $user['role']);
-                $obj->setSession();
-            } else {
-                $obj = new SimpleUser($user['username'],$user['userlastname'], $user['password'], $user['role']);
-                $obj->setSession();
+                $obj = new AdminUser($user['username'],$user['userlastname'], $user['role'], $user['password']);
+                $obj->setSession($obj->getUsername(), $obj->getRole());
+            } else if($user['role'] == 0){
+                $obj = new SimpleUser($user['username'],$user['userlastname'], $user['role'], $user['password']);
+                $obj->setSession($obj->getUsername(), $obj->getRole());
             }
             return true;
-        } else
+        } 
+        else
             return false;
 
     }

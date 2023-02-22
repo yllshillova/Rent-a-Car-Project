@@ -80,12 +80,13 @@ class ContactUsMapper extends Database
 
     public function updatePreference($data)
     {
+        $client_id = $data['client_id'];
         $client_fullname = $data['client_fullname'];
         $client_email = $data['client_email'];
-        $client_message = $data['client_message'];;
+        $client_message = $data['client_message'];
 
         $query = "update contact_us set client_fullname='$client_fullname', client_email='$client_email',
-        client_message='$client_message'";
+        client_message='$client_message'  where client_id = '$client_id'";
 
         if ($sql = $this->conn->query($query)) {
             return true;

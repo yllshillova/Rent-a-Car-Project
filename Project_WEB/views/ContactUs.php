@@ -62,6 +62,7 @@
         }
         ?>
         <form action="#" method="POST">
+          
           <div class="input-box">
             <input name="client_fullname" id="name" type="text" placeholder="Enter your full name" required>
           </div>

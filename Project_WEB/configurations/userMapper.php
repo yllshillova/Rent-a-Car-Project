@@ -29,8 +29,10 @@ class UserMapper extends Database
                 $data = $row;
             }
         }
+        
         return $data;
     }
+    
     public function getAllUsers()
     {
         $data = null;
@@ -47,12 +49,12 @@ class UserMapper extends Database
     {
         $username = $user->getUsername();
         $userlastname = $user->getUserLastName();
-        $role = $user->getRole();
-        $password = password_hash($user->getPassword(),PASSWORD_BCRYPT); // error while setting it with md5 DO NOT MAKE IT AGAINNNNN 
-        $query = "INSERT INTO user(username, userlastname, role, password) VALUES ('$username','$userlastname', '$role', '$password')";
+        $password = password_hash($user->getPassword(),PASSWORD_BCRYPT);
+        $role = $user->getRole(); // error while setting it with md5 DO NOT MAKE IT AGAINNNNN 
+        $query = "INSERT INTO user(username, userlastname,role , password) VALUES ('$username','$userlastname','$role', '$password')";
         if ($sql = $this->conn->query($query)) {
-            $_SESSION['message']= "Admin/User added succesfully";
             echo "<script>alert('records added successfully');</script>";
+            $_SESSION['message']= "Admin/User added succesfully";
         } else {
             $_SESSION['message']= "Admin/User not added";
             echo "<script>alert('failed');</script>";
@@ -67,7 +69,7 @@ class UserMapper extends Database
 
         $data = null;
 
-        $query = "SELECT * FROM user WHERE userid = '$userid'";
+        $query = "SELECT * FROM  WHERE userid = '$userid'";
         if ($sql = $this->conn->query($query)) {
             while ($row = $sql->fetch_assoc()) {
                 $data = $row;
@@ -81,11 +83,11 @@ class UserMapper extends Database
         $userid = $data['userid'];
         $username = $data['username'];
         $userlastname = $data['userlastname'];
-        $role = $data['role'];
         $password = $data['password'];
+        $role = $data['role'];
 
         $query = "update user set username='$username', userlastname='$userlastname',
-         role='$role', password='$password' where userid='$userid'";
+        , role='$role', password='$password' where userid='$userid'";
 
 
         if ($sql = $this->conn->query($query)) {
