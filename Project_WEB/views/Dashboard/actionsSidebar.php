@@ -9,7 +9,7 @@ if (!isset($_SESSION)) {
             <img src="images/logo.png" alt="">
         </div>
 
-        <span class="logo_name">Hi, admin</span>
+        <span class="logo_name">Hi, <?php echo $_SESSION['user'] ?></span>
     </div>
 
     <div class="menu-items">
