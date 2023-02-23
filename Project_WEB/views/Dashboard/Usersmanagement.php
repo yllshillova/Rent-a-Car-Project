@@ -2,8 +2,8 @@
 require_once '../../configurations/userMapper.php';
 if (!isset($_SESSION)) {
     session_start();
-  }
-if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+}
+if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
     header('Location:../LoginRegister.php');
 }
 ?>
@@ -75,10 +75,16 @@ if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
                                                 $role
                                             );
                                             $mapper = new UserMapper();
-                                            $mapper->insertUser($user);
-                                            header('Location: Usersmanagement.php#');
+                                            $query = "SELECT * FROM user WHERE username='$username'";
+                                            $result = $mapper->getConnection()->query($query);
+                                            if ($result->num_rows > 0) {
+                                                $_SESSION['message'] = "Username is <strong>taken!</strong> Try again.";
+                                                header("Location: Usersmanagement.php#");
+                                            } else {
+                                                $mapper->insertUser($user);
+                                                header('Location: Usersmanagement.php#');
                                             }
-                                         else if ($role == 0) {
+                                        } else if ($role == 0) {
                                             $user = new SimpleUser(
                                                 $username,
                                                 $userlastname,
@@ -86,11 +92,17 @@ if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
                                                 $role
                                             );
                                             $mapper = new UserMapper();
-                                            $mapper->insertUser($user);
-                                            header('Location: Usersmanagement.php#');
-                                        }
-                                        else{
-                                            if(empty($username) || empty($userlastname) || empty($password) || empty($role)){
+                                            $query = "SELECT * FROM user WHERE username='$username'";
+                                            $result = $mapper->getConnection()->query($query);
+                                            if ($result->num_rows > 0) {
+                                                $_SESSION['message'] = "Username is <strong>taken!</strong> Try again.";
+                                                header("Location: Usersmanagement.php#");
+                                            } else {
+                                                $mapper->insertUser($user);
+                                                header('Location: Usersmanagement.php#');
+                                            }
+                                        } else {
+                                            if (empty($username) || empty($userlastname) || empty($password) || empty($role)) {
                                                 $_SESSION['message'] = "All fields are <strong>required!</strong>";
                                                 header('Location: Usersmanagement.php#');
                                                 return;

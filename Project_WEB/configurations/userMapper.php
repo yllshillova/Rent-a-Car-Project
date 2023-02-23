@@ -73,8 +73,6 @@ class UserMapper extends Database
     }
 
 
-
-
     public function editUser($userid)
     {
 
