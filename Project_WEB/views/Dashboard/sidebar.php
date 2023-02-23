@@ -1,10 +1,15 @@
+<?php 
+if (!isset($_SESSION)) {
+    session_start();
+  }
+?>
 <nav>
     <div class="logo-name">
         <div class="logo-image">
             <img src="images/logo.png" alt="">
         </div>
 
-        <span class="logo_name">Hi, Admin</span>
+        <span class="logo_name">Hi, admin</span>
     </div>
 
     <div class="menu-items">
@@ -26,7 +31,7 @@
                     <span class="link-name">Bookings Management</span>
                 </a></li>
             <li><a href="Clientrepliesmanagement.php">
-            <i class="fas fa-envelope-square"></i>
+                    <i class="fas fa-envelope-square"></i>
                     <span class="link-name">Client Replies</span>
                 </a></li>
             <li><a href="Contactusmanagement.php">
@@ -41,10 +46,16 @@
                     <i class="fas fa-home"></i>
                     <span class="link-name">Back at home</span>
                 </a></li>
-            <li><a href="../../configurations/loginconfig/logout.php">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+            <?php
+            if (isset($_SESSION["role"])) {
+                ?>
+                <li><a href="../../configurations/loginconfig/logout.php">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+                <?php
+            }
+            ?>
         </ul>
     </div>
 </nav>

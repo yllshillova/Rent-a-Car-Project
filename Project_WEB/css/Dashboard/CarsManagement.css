@@ -188,9 +188,10 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
     cursor: pointer;
 }
+/* 
 .dashboard .dash-content{
     padding-top: 50px;
-}
+} */
 .dash-content .title{
     display: flex;
     align-items: center;
@@ -218,7 +219,13 @@ nav.close ~ .dashboard .top{
     margin-left: 10px;
 }
 
+
 .activity{
+    position: fixed;
+    margin-left: 70px;
+}
+
+.activity2{
     margin-left: 70px;
 }
 

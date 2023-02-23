@@ -1,6 +1,9 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+}
 
-session_start();
+
 include_once '../userMapper.php';
 include_once '../userconfig/adminUser.php';
 include_once '../userconfig/simpleUser.php';
@@ -35,7 +38,11 @@ class LoginLogic
         } 
         else if ($this->verifyCorrectData($this->username, $this->password)) {
             header("Location: ../../views/HomePage.php");
-        } else {
+        }
+        else if ($this->verifyUnknownUser($this->username)){
+            header("Location: ../../views/LoginRegister.php");
+        }
+         else {
             header("Location: ../../views/LoginRegister.php");
         }
     }
@@ -44,27 +51,33 @@ class LoginLogic
     {
 
         if (empty($username) || empty($password)) {
-            return true;
+            return $_SESSION['message'] = "Username and password required!";
         }
 
         return false;
     }
 
+    private function verifyUnknownUser($username){
+        $mapper = new UserMapper();
+        $user = $mapper->getUserByUsername($username);
+        $sql = "select * from user where username = '$username'";
+        $result = mysqli_query($mapper->getConnection(),$sql);
+        if(mysqli_num_rows($result) == 0 || $user == null){
+            return $_SESSION['message'] = "User doesnt exist!";
+        }
+    }
     private function verifyCorrectData($username, $password)
     {
         $mapper = new UserMapper();
         $user = $mapper->getUserByUsername($username);
-        echo "User is: ".$user;  
-
-        if ($user == null || count($user) == 0)
-            return false;
-        else if (password_verify($password,$user['password'])){
+        // echo "User is: ".$user;  
+        if (password_verify($password,$user['password'])){
             if ($user['role'] == 1) {
-                $obj = new AdminUser($user['username'],$user['userlastname'], $user['role'], $user['password']);
-                $obj->setSession($obj->getUsername(), $obj->getRole());
+                $admin = new AdminUser($user['username'],$user['userlastname'], $user['password'], $user['role']);
+                $admin->setSession($admin->getUsername());
             } else if($user['role'] == 0){
-                $obj = new SimpleUser($user['username'],$user['userlastname'], $user['role'], $user['password']);
-                $obj->setSession($obj->getUsername(), $obj->getRole());
+                $simple = new SimpleUser($user['username'],$user['userlastname'], $user['password'], $user['role']);
+                $simple->setSession($simple->getUsername());
             }
             return true;
         } 

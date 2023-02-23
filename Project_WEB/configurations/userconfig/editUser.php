@@ -1,4 +1,8 @@
-
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +23,7 @@
 
 <body>
     <?php
+    include '../../views/Dashboard/message.php';
     include '../../views/Dashboard/actionsSidebar.php';
     ?>
     <section class="dashboard">
@@ -33,7 +38,7 @@
                     <i class="fas fa-users-cog"></i>
                     <span class="text">Users Management</span>
                 </div>
-                <div class="activity">
+                <div class="activity2">
                     <div class="overlay2" id="divOne">
                         <div class="wrapper2">
                             <h2>User Updating form</h2>
@@ -55,16 +60,23 @@
                                             $data['role'] = $_POST['role'];
                                             $data['password'] = $_POST['password'];
                                             $update = $mapper->updateUser($data);
-                                            if ($update) {
-                                                echo "<script>alert('record update successfully');</script>";
+                                            if (
+                                                empty($data['username']) || empty($data['userlastname']) || empty($data['role']) || empty($data['password'])
+                                            ) {
+                                                $_SESSION['message'] = "Update failed, all fields are <strong>required!</strong> Possible loss of data.";
                                                 echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
-                                            } else {
-                                                echo "<script>alert('record update failed');</script>";
-                                                echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
+                                                return;
+                                            } else if (!(empty($data['username']) || empty($data['userlastname']) || empty($data['role']) || empty($data['password']))) {
+                                                if ($update) {
+                                                    echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
+                                                } else {
+                                                    echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
+                                                }
+                                                return;
                                             }
                                         } else {
-                                            echo "<script>alert('empty');</script>";
-                                            echo "<script>window.location.href = ' ../../configurations/userconfig/editUser.php?userid=$id';</script>";
+                                            $_SESSION['message'] = "Something went <strong>wrong</strong>!";
+                                            echo "<script>window.location.href = '../../views/Dashboard/Usersmanagement.php';</script>";
                                         }
                                     }
 
@@ -72,13 +84,17 @@
                                     ?>
                                     <form action="" method="POST">
                                         <label>User First Name</label>
-                                        <input name="username" placeholder="User name.." type="text" value="<?php echo $user['username']; ?>">
+                                        <input name="username" placeholder="User name.." type="text"
+                                            value="<?php echo $user['username']; ?>">
                                         <label>User Last Name</label>
-                                        <input name="userlastname" placeholder="User last name.." type="text" value="<?php echo $user['userlastname']; ?>">
+                                        <input name="userlastname" placeholder="User last name.." type="text"
+                                            value="<?php echo $user['userlastname']; ?>">
                                         <label>User password</label>
-                                        <input name="password" placeholder="User password.." type="password" value="<?php echo $user['password']; ?>">
+                                        <input name="password" placeholder="User password.." type="password"
+                                            value="<?php echo $user['password']; ?>">
                                         <label>User role</label>
-                                        <input name="role" placeholder="User role.." type="text" value="<?php echo $user['role']; ?>">
+                                        <input name="role" placeholder="User role.." type="text"
+                                            value="<?php echo $user['role']; ?>">
                                         <input name="update" class="submitBtn" type="submit" value="Submit">
                                     </form>
                                 </div>

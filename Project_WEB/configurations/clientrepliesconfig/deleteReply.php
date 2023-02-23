@@ -1,4 +1,7 @@
 <?php 
+if (!isset($_SESSION)) {
+    session_start();
+  }
     include '../clientRepliesMapper.php';
     $mapper = new ClientRepliesMapper();
     $id = $_REQUEST['client_ID'];

@@ -1,5 +1,8 @@
 <?php 
-ob_start();
+if(!isset($_SESSION)){
+    session_start();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -193,7 +196,6 @@ ob_start();
 <?php
 
 include '../components/footer.php';
-ob_end_flush();
 ?>
     <script src="../js/FAQ's.js"></script>
     <script src="../js/footer.js"></script>

@@ -1,3 +1,8 @@
+<?php 
+if (!isset($_SESSION)) {
+    session_start();
+  }
+?>
 <footer>
     <div class="footer-firstDiv">
         <img src="../img/rentcar.png" alt="">
@@ -8,6 +13,7 @@
             <img src="../img/qualified2.webp" alt="">
             <img src="../img/qualified3.svg" alt="">
         </div>
+        
         <?php
         require_once '../configurations/clientRepliesMapper.php';
         require_once '../configurations/clientrepliesconfig/reply.php';
@@ -17,10 +23,15 @@
                 $client_message
             );
             $mapper = new ClientRepliesMapper();
-            $mapper->insertReply($reply);
+            if(empty($client_message)){
+                echo "<script>alert('Message field is required. Reply not sent!');</script>";
+            }
+            else if($mapper->insertReply($reply)){
+                return true;
+            }
         }
         ?>
-        <div class="send-message ">
+        <div class="send-message">
             <form action="#" method="POST">
                 <h3 class="h3-message">Leave us a message</h3>
                 <textarea id="send_message" name="client_message" id="message" cols="30" rows="5"

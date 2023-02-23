@@ -188,9 +188,10 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
     cursor: pointer;
 }
+/* 
 .dashboard .dash-content{
     padding-top: 50px;
-}
+} */
 .dash-content .title{
     display: flex;
     align-items: center;
@@ -308,11 +309,14 @@ input[type="submit"] {
 	text-transform: uppercase;
 	letter-spacing: 3px;
 }
-
 .activity{
+    position: fixed;
     margin-left: 70px;
 }
 
+.activity2{
+    margin-left: 70px;
+}
 
 /* action buttons */
 .fa-trash-alt{

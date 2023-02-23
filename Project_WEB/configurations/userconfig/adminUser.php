@@ -3,13 +3,13 @@ require_once 'person.php';
 
 class AdminUser extends Person{
 
-    public function __construct($username,$userlastname,$role,$password){
-        parent::__construct($username, $userlastname,$role,$password);
+    public function __construct($username,$userlastname,$password, $role){
+        parent::__construct($username, $userlastname,$password, $role);
 
     }
 
-    public function setSession($username, $role){
-        $_SESSION['role'] = $role;
+    public function setSession($username){
+        $_SESSION['role'] = '1';
         $_SESSION['roleName'] = "Administrator";
         $_SESSION['user'] = $username;
     }   

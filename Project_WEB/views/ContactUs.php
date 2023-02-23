@@ -1,8 +1,11 @@
 <?php
+if (!isset($_SESSION)) {
+  session_start();
+}
 
-// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
-//     header('Location:LoginRegister.php');
-// }
+if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+  header('Location:LoginRegister.php');
+}
 
 ?>
 
@@ -43,6 +46,9 @@
         </div>
       </div>
       <div class="right-side">
+        <?php
+        include_once 'Dashboard/message.php';
+        ?>
         <div class="topic-text">Send us a message</div>
         <p></p>
         <?php
@@ -58,20 +64,24 @@
             $client_message
           );
           $mapper = new ContactUsMapper();
-          $mapper->insertPreference($contact);
+          if (empty($client_fullname) || empty($client_email) || empty($client_message)) {
+            echo "<script>alert('All fields are required!');</script>";
+          }
+          else if($mapper->insertPreference($contact)){
+            echo "<script>alert('Message sent sucessfully!');</script>";
+          }
         }
         ?>
         <form action="#" method="POST">
-          
+
           <div class="input-box">
-            <input name="client_fullname" id="name" type="text" placeholder="Enter your full name" required>
+            <input name="client_fullname" id="name" type="text" placeholder="Enter your full name">
           </div>
           <div class="input-box">
-            <input name="client_email" id="emaili" type="text" placeholder="Enter your email" required>
+            <input name="client_email" id="emaili" type="text" placeholder="Enter your email">
           </div>
           <div class="input-box message-box">
-            <textarea name="client_message" id="textarea_message" placeholder="Your message for us..."
-              required></textarea>
+            <textarea name="client_message" id="textarea_message" placeholder="Your message for us..."></textarea>
           </div>
           <div class="button">
             <input name="submit" type="submit" value="Send Now" onclick="validationContactUs()">
@@ -82,7 +92,10 @@
     <div class="last-row-copyrights">
       <ul>
         <?php
-        session_start();
+        if (!isset($_SESSION)) {
+          session_start();
+        }
+
         if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
           ?>
           <li><a href="Dashboard/Dashboard.php">Dashboard</a></li>

@@ -1,10 +1,11 @@
 <?php
-ob_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 
-// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
-//     header('Location:LoginRegister.php');
-// }
-
+if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+    header('Location:LoginRegister.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +84,12 @@ ob_start();
                     $car_name
                 );
                 $mapper = new BookingsMapper();
-                $mapper->insertBooking($booking);
+                if(empty($client_name) || empty($client_email) || empty($check_in_date) || empty($check_out_date) || empty($car_name)){
+                    echo "<script>alert('All fields are required. Booking failed!');</script>";
+                }
+                else if($mapper->insertBooking($booking)){
+                    echo "<script>alert('Booking made succesfully!');</script>";
+                }
             }
 
             ?>
@@ -327,7 +333,6 @@ ob_start();
     <?php
 
     include '../components/footer.php';
-    ob_end_flush();
     ?>
 </body>
 

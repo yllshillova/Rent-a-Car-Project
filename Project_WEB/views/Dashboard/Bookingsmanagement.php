@@ -1,9 +1,10 @@
 <?php
-session_start();
-// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
-//     header('Location:../LoginRegister.php');
-// }
-
+if (!isset($_SESSION)) {
+    session_start();
+  }
+if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+    header('Location:../LoginRegister.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,12 +39,11 @@ session_start();
                     <i class="fas fa-calendar-alt"></i>
                     <span class="text">Bookings Management</span>
                 </div>
-
-
             </div>
 
             <div class="activity">
-                <div class="boxx">
+            <?php include_once('message.php'); ?>    
+            <div class="boxx">
                     <a class="submitAdd" href="#divOne">Add new Booking</a>
                 </div>
                 <div class="overlay" id="divOne">
@@ -67,6 +67,11 @@ session_start();
                                         $check_out_date,
                                         $car_name
                                     );
+                                        if(empty($client_name) || empty($client_email) || empty($check_in_date) || empty($check_out_date) || empty($car_name)){
+                                            $_SESSION['message'] = "All fields are <strong>required!</strong>";
+                                            header('Location: BookingsManagement.php#');
+                                            return;
+                                        }
                                     $mapper = new BookingsMapper();
                                     $mapper->insertBooking($booking);
                                     header('Location: BookingsManagement.php#');
@@ -83,7 +88,7 @@ session_start();
                                     <label>Check out Date</label>
                                     <input name="check_out_date" placeholder="Ex. 10-05-2020.." type="date">
                                     <label>Car Name</label>
-                                    <input name="car_name" type="text" id="car_name">
+                                    <input name="car_name" type="text" placeholder="Car name.." id="car_name">
                                     <input name="submit" class="subBtn" type="submit" value="Submit">
                                 </form>
                             </div>

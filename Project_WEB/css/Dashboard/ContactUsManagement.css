@@ -2,7 +2,6 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -189,9 +188,10 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
 }
 
+/* 
 .dashboard .dash-content{
     padding-top: 50px;
-}
+} */
 .dash-content .title{
     display: flex;
     align-items: center;
@@ -221,6 +221,11 @@ nav.close ~ .dashboard .top{
 
 
 .activity{
+    position: fixed;
+    margin-left: 70px;
+}
+
+.activity2{
     margin-left: 70px;
 }
 

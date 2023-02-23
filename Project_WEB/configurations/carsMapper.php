@@ -1,5 +1,3 @@
-
-
 <?php
 require_once 'databaseConfig.php';
 
@@ -53,20 +51,21 @@ class CarsMapper extends Database
 
     public function insertCar($car)
     {
-        
+
 
         $car_name = $car->getCarName();
         $car_price = $car->getCarPrice();
-        $car_frontImage ='../img/'.$car->getCarFrontImage();
-        $car_backImage = '../img/'.$car->getCarBackImage();
+        $car_frontImage = '../img/' . $car->getCarFrontImage();
+        $car_backImage = '../img/' . $car->getCarBackImage();
 
 
         $query = "INSERT INTO cars(car_name, car_price, car_frontImage, car_backImage) 
         VALUES ('$car_name','$car_price', '$car_frontImage', '$car_backImage')";
+
         if ($sql = $this->conn->query($query)) {
-            echo "<script>alert('records added successfully');</script>";
+            return $_SESSION['message'] = "Car has been <strong>added</strong> succesfully!";
         } else {
-            echo "<script>alert('failed');</script>";
+            return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
     public function editCar($car_id)
@@ -96,19 +95,20 @@ class CarsMapper extends Database
 
 
         if ($sql = $this->conn->query($query)) {
-            return true;
+            return $_SESSION['message'] = "Car has been <strong>updated</strong> succesfully!";
         } else {
-            return false;
+            return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
-    
-    public function deleteCar($car_id){
- 
+
+    public function deleteCar($car_id)
+    {
+
         $query = "DELETE FROM cars where car_id = '$car_id'";
         if ($sql = $this->conn->query($query)) {
-            return true;
-        }else{
-            return false;
+            return $_SESSION['message'] = "Car has been <strong>deleted</strong> succesfully!";
+        } else {
+            return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
 
@@ -119,6 +119,3 @@ class CarsMapper extends Database
 
 
 ?>
-
-
-

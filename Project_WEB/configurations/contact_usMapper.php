@@ -48,20 +48,21 @@ class ContactUsMapper extends Database
 
     public function insertPreference($contact)
     {
-        
+
 
         $client_fullname = $contact->getClientFullName();
-        $client_email =$contact->getClientEmail();
-        $client_message =$contact->getClientMessage();
+        $client_email = $contact->getClientEmail();
+        $client_message = $contact->getClientMessage();
 
 
         $query = "INSERT INTO contact_us(client_fullname, client_email, client_message) 
         VALUES ('$client_fullname','$client_email', '$client_message')";
+     
         if ($sql = $this->conn->query($query)) {
-            echo "<script>alert('records added successfully');</script>";
-            header('Location:HomePage.php');
+            $_SESSION['message'] = "Message has been <strong>sent</strong> succesfully!";
+            header('Location:ContactUs.php');
         } else {
-            echo "<script>alert('failed');</script>";
+            return $_SESSION['message'] = "Something went wrong!";
         }
     }
     public function editPreference($client_id)
@@ -89,18 +90,19 @@ class ContactUsMapper extends Database
         client_message='$client_message'  where client_id = '$client_id'";
 
         if ($sql = $this->conn->query($query)) {
-            return true;
+            return $_SESSION['message'] = "Preference has been <strong>updated</strong> succesfully!";
         } else {
-            return false;
+            return $_SESSION['message'] = "Something went wrong!";
         }
     }
-    public function deleteClientPreference($client_id){
- 
+    public function deleteClientPreference($client_id)
+    {
+
         $query = "DELETE FROM contact_us where client_id = '$client_id'";
         if ($sql = $this->conn->query($query)) {
-            return true;
-        }else{
-            return false;
+            return $_SESSION['message'] = "Preference has been <strong>deleted</strong> succesfully!";
+        } else {
+            return $_SESSION['message'] = "Something went wrong!";
         }
     }
 

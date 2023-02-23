@@ -1,4 +1,3 @@
-
 <?php
 require_once 'databaseConfig.php';
 
@@ -37,20 +36,18 @@ class ClientRepliesMapper extends Database
         return $data;
     }
 
- 
+
     public function insertReply($reply)
     {
-        
-        $client_message =$reply->getClientMessage();
+
+        $client_message = $reply->getClientMessage();
 
 
-        $query = "INSERT INTO client_replies(client_message) 
-        VALUES ('$client_message')";
+        $query = "INSERT INTO client_replies(client_message) VALUES ('$client_message')";
         if ($sql = $this->conn->query($query)) {
-            echo "<script>alert('reply sent successfully');</script>";
-            header('Location:HomePage.php');
+            $_SESSION['message'] = "Reply has been <strong>sent</strong> succesfully!";
         } else {
-            echo "<script>alert('failed');</script>";
+            $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
     public function editReply($client_ID)
@@ -75,19 +72,20 @@ class ClientRepliesMapper extends Database
         $query = "update client_replies set client_message='$client_message' where client_ID = '$client_ID'";
 
         if ($sql = $this->conn->query($query)) {
-            return true;
+            return $_SESSION['message'] = "Preference has been <strong>updated</strong> succesfully!";
         } else {
-            return false;
+            return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
-    
-    public function deleteReply($client_id){
- 
+
+    public function deleteReply($client_id)
+    {
+
         $query = "DELETE FROM client_replies where client_ID = '$client_id'";
         if ($sql = $this->conn->query($query)) {
-            return true;
-        }else{
-            return false;
+            return $_SESSION['message'] = "Reply has been <strong>deleted</strong> succesfully!";
+        } else {
+            return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
 

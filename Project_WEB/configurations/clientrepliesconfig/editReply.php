@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +38,7 @@
                     <i class="fas fa-users-cog"></i>
                     <span class="text">Contact Us Management</span>
                 </div>
-                <div class="activity">
+                <div class="activity2">
                     <div class="overlay2" id="divOne">
                         <div class="wrapper2">
                             <h2>Preference Update form</h2>
@@ -45,22 +50,25 @@
                                     $id = $_REQUEST['client_ID'];
                                     $preference = $mapper->editReply($id);
                                     if (isset($_POST['update'])) {
-                                        if (
-                                            isset($_POST['client_message'])
-                                        ) {
+
+                                        if (isset($_POST['client_message'])) {
+
                                             $data['client_ID'] = $id;
                                             $data['client_message'] = $_POST['client_message'];
                                             $update = $mapper->updateReply($data);
-                                            if ($update) {
-                                                echo "<script>alert('Reply updated successfully');</script>";
+                                            if (empty($data['client_message'])) {
+                                                $_SESSION['message'] = "Update failed, all fields are <strong>required!</strong> Possible loss of data.";
                                                 echo "<script>window.location.href = '../../views/Dashboard/Clientrepliesmanagement.php';</script>";
-                                            } else {
-                                                echo "<script>alert('Reply update failed');</script>";
-                                                echo "<script>window.location.href = '../../views/Dashboard/Clientrepliesmanagement.php';</script>";
+                                                return;
+                                            } else if (!empty($data['client_message'])) {
+                                                if ($update) {
+                                                    echo "<script>window.location.href = '../../views/Dashboard/Clientrepliesmanagement.php';</script>";
+                                                }
+                                                return;
                                             }
                                         } else {
-                                            echo "<script>alert('empty');</script>";
-                                            echo "<script>window.location.href = ' ../../configurations/contactusconfig/editPreference.php?client_ID=$id';</script>";
+                                            $_SESSION['message'] = "Something went <strong>wrong</strong>!";
+                                            echo "<script>window.location.href = '../../views/Dashboard/Clientrepliesmanagement.php';</script>";
                                         }
                                     }
 

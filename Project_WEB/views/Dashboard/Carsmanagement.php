@@ -1,8 +1,10 @@
 <?php
-session_start();
-// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
-//     header('Location:../LoginRegister.php');
-// }
+if (!isset($_SESSION)) {
+    session_start();
+  }
+if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+    header('Location:../LoginRegister.php');
+}
 
 ?>
 
@@ -40,11 +42,9 @@ session_start();
                     <span class="text">Cars Management </span>
                 </div>
 
-
-
-
                 <div class="activity">
-                    <div class="boxx">
+                <?php include_once('message.php'); ?>
+                <div class="boxx">
                         <a class="submitAdd" href="#divOne">Add new Car</a>
                     </div>
                     <div class="overlay" id="divOne">
@@ -66,6 +66,12 @@ session_start();
                                                 $car_frontImage,
                                                 $car_backImage
                                             );
+                                            if(empty($car_name) || empty($car_price) || empty($car_frontImage) || empty($car_backImage || strlen($data['car_frontImage']) < 8 ||
+                                            strlen($data['car_backImage']) < 8)){
+                                                $_SESSION['message'] = "All fields are <strong>required!</strong>";
+                                                header('Location: CarsManagement.php#');
+                                                return;
+                                            }
                                             $mapper = new CarsMapper();
                                             $mapper->insertCar($car);
                                             header('Location: CarsManagement.php#');

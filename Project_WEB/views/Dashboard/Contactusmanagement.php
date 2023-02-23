@@ -1,10 +1,10 @@
-
-
 <?php
-session_start();
-// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
-//     header('Location:../LoginRegister.php');
-// }
+if (!isset($_SESSION)) {
+    session_start();
+  }
+if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+    header('Location:../LoginRegister.php');
+}
 
 ?>
 
@@ -38,15 +38,15 @@ session_start();
 
         <div class="dash-content">
             <div class="overview">
-                <div class="title">
+                <div class="title">         
                     <i class="fas fa-envelope"></i>
                     <span class="text">Contact Us management</span>
 
                 </div>
 
                 <div class="activity">
-                    
                     <div class="table">
+                <?php include_once('message.php'); ?>
                         <table class="styled-table">
                             <thead>
                                 <tr>

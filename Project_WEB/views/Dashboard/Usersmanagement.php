@@ -1,6 +1,13 @@
 <?php
 require_once '../../configurations/userMapper.php';
+if (!isset($_SESSION)) {
+    session_start();
+  }
+if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+    header('Location:../LoginRegister.php');
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +45,7 @@ require_once '../../configurations/userMapper.php';
 
 
 
-                <div class="activity">
+                <div class="activity2">
                     <?php include_once('message.php'); ?>
                     <!-- not being showed!!!!!!!!!!!!!!!!! -->
                     <div class="boxx">
@@ -60,31 +67,35 @@ require_once '../../configurations/userMapper.php';
                                         $userlastname = $_POST['userlastname'];
                                         $password = $_POST['password'];
                                         $role = $_POST['role'];
-                                        if ($role === '1') {
+                                        if ($role == 1) {
                                             $user = new AdminUser(
                                                 $username,
                                                 $userlastname,
-                                                $role,
-                                                $password
+                                                $password,
+                                                $role
                                             );
-                                            $user->setSession($username,$role);
                                             $mapper = new UserMapper();
                                             $mapper->insertUser($user);
                                             header('Location: Usersmanagement.php#');
-                                        } else if($role === '0') {
+                                            }
+                                         else if ($role == 0) {
                                             $user = new SimpleUser(
                                                 $username,
                                                 $userlastname,
-                                                $role,
-                                                $password
+                                                $password,
+                                                $role
                                             );
-                                            $user->setSession($username,$role);
                                             $mapper = new UserMapper();
                                             $mapper->insertUser($user);
                                             header('Location: Usersmanagement.php#');
                                         }
-
-
+                                        else{
+                                            if(empty($username) || empty($userlastname) || empty($password) || empty($role)){
+                                                $_SESSION['message'] = "All fields are <strong>required!</strong>";
+                                                header('Location: Usersmanagement.php#');
+                                                return;
+                                            }
+                                        }
                                     }
 
                                     ?>
@@ -100,7 +111,7 @@ require_once '../../configurations/userMapper.php';
                                         <input name="role" placeholder="User name.." type="text">
                                         <input class="subBtn" name="submit" type="submit" value="Submit">
                                     </form>
-                                    
+
                                     <!-- <select id="">
                                             <option value="">--Select Role--</option>
                                             <option name="role" value="1">Admin</option>

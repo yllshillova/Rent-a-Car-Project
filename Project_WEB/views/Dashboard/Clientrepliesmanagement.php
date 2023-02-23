@@ -1,9 +1,10 @@
-
 <?php
-session_start();
-// if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
-//     header('Location:../LoginRegister.php');
-// }
+if (!isset($_SESSION)) {
+    session_start();
+  }
+if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
+    header('Location:../LoginRegister.php');
+}
 
 ?>
 
@@ -43,15 +44,15 @@ session_start();
 
                 </div>
 
-                <div class="activity">
-                    
+                <div class="activity2">
                     <div class="table">
+                <?php include_once('message.php'); ?>
                         <table class="styled-table">
                             <thead>
                                 <tr>
                                     <th class="heads">Client ID</th>
-                                    <th class="heads" style="width: 500px;">Client Message</th>
-                                    <th class="heads" >Actions</th>
+                                    <th class="heads">Client Message</th>
+                                    <th class="heads">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

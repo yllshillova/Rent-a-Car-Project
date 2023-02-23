@@ -4,7 +4,8 @@ class UserMapper extends Database
 {
 
     private $conn;
-    public function __construct(){
+    public function __construct()
+    {
         $this->conn = $this->getConnection();
     }
     public function getUserById($id)
@@ -29,10 +30,10 @@ class UserMapper extends Database
                 $data = $row;
             }
         }
-        
+
         return $data;
     }
-    
+
     public function getAllUsers()
     {
         $data = null;
@@ -49,15 +50,13 @@ class UserMapper extends Database
     {
         $username = $user->getUsername();
         $userlastname = $user->getUserLastName();
-        $password = password_hash($user->getPassword(),PASSWORD_BCRYPT);
+        $password = password_hash($user->getPassword(), PASSWORD_BCRYPT);
         $role = $user->getRole(); // error while setting it with md5 DO NOT MAKE IT AGAINNNNN 
         $query = "INSERT INTO user(username, userlastname,role , password) VALUES ('$username','$userlastname','$role', '$password')";
         if ($sql = $this->conn->query($query)) {
-            echo "<script>alert('records added successfully');</script>";
-            $_SESSION['message']= "Admin/User added succesfully";
+            $_SESSION['message'] = "Admin/User <strong>added</strong> succesfully!";
         } else {
-            $_SESSION['message']= "Admin/User not added";
-            echo "<script>alert('failed');</script>";
+            $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
 
@@ -69,7 +68,7 @@ class UserMapper extends Database
 
         $data = null;
 
-        $query = "SELECT * FROM  WHERE userid = '$userid'";
+        $query = "SELECT * FROM user WHERE userid = '$userid'";
         if ($sql = $this->conn->query($query)) {
             while ($row = $sql->fetch_assoc()) {
                 $data = $row;
@@ -87,23 +86,24 @@ class UserMapper extends Database
         $role = $data['role'];
 
         $query = "update user set username='$username', userlastname='$userlastname',
-        , role='$role', password='$password' where userid='$userid'";
+        password='$password' , role='$role' where userid='$userid'";
 
 
         if ($sql = $this->conn->query($query)) {
-            return true;
+            return $_SESSION['message'] = "Admin/User has been <strong>updated</strong> succesfully!";
         } else {
-            return false;
+           return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
 
-    public function deleteUser($userid){
- 
+    public function deleteUser($userid)
+    {
+
         $query = "DELETE FROM user where userid = '$userid'";
         if ($sql = $this->conn->query($query)) {
-            return true;
-        }else{
-            return false;
+            return $_SESSION['message'] = "Admin/User has been <strong>deleted</strong> succesfully!";
+        } else {
+            return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }
     }
 
