@@ -5,7 +5,7 @@ class Database{
     private $connection;
     private $host = "localhost";
     private $username = "root";
-    private $database = "rentacar";
+    private $database = "rent";
     private $password = "";
     private function createConnection(){
         try{

@@ -72,7 +72,7 @@ class ClientRepliesMapper extends Database
         $query = "update client_replies set client_message='$client_message' where client_ID = '$client_ID'";
 
         if ($sql = $this->conn->query($query)) {
-            return $_SESSION['message'] = "Preference has been <strong>updated</strong> succesfully!";
+            return $_SESSION['message'] = "Reply has been <strong>updated</strong> succesfully!";
         } else {
             return $_SESSION['message'] = "Something went <strong>wrong</strong>!";
         }

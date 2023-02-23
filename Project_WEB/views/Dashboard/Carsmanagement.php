@@ -42,7 +42,7 @@ if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
                     <span class="text">Cars Management </span>
                 </div>
 
-                <div class="activity">
+                <div class="activity2">
                 <?php include_once('message.php'); ?>
                 <div class="boxx">
                         <a class="submitAdd" href="#divOne">Add new Car</a>

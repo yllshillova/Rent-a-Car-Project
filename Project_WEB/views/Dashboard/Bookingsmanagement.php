@@ -41,7 +41,7 @@ if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
                 </div>
             </div>
 
-            <div class="activity">
+            <div class="activity2">
             <?php include_once('message.php'); ?>    
             <div class="boxx">
                     <a class="submitAdd" href="#divOne">Add new Booking</a>

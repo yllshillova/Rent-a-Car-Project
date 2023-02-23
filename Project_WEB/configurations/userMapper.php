@@ -34,6 +34,18 @@ class UserMapper extends Database
         return $data;
     }
 
+    public function getUserByPassword($password){
+        $data = null;
+        $query = "SELECT * FROM user WHERE password = '$password'";
+        if ($sql = $this->conn->query($query)) {
+            while ($row = $sql->fetch_assoc()) {
+                $data = $row;
+            }
+        }
+
+        return $data;
+    }
+
     public function getAllUsers()
     {
         $data = null;

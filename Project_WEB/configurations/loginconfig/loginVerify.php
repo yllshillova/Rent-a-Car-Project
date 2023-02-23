@@ -33,13 +33,16 @@ class LoginLogic
 
     public function verify()
     {
-        if ($this->verifyEmptyData($this->username, $this->password)) {
-            header("Location:../../views/LoginRegister.php");
-        } 
-        else if ($this->verifyCorrectData($this->username, $this->password)) {
+         if ($this->verifyCorrectData($this->username, $this->password)) {
             header("Location: ../../views/HomePage.php");
         }
+        else if ($this->verifyEmptyData($this->username, $this->password)) {
+            header("Location:../../views/LoginRegister.php");
+        } 
         else if ($this->verifyUnknownUser($this->username)){
+            header("Location: ../../views/LoginRegister.php");
+        }
+        else if ($this->verifyPassword($this->password)) {
             header("Location: ../../views/LoginRegister.php");
         }
          else {
@@ -64,6 +67,14 @@ class LoginLogic
         $result = mysqli_query($mapper->getConnection(),$sql);
         if(mysqli_num_rows($result) == 0 || $user == null){
             return $_SESSION['message'] = "User doesnt exist!";
+        }
+    }
+    private function verifyPassword($password){
+        $mapper = new UserMapper();
+        $user = $mapper->getUserByPassword($password);
+        if(!password_verify($password,$user['password'])){
+            $_SESSION['message'] = "Password incorrect!";
+            return true;
         }
     }
     private function verifyCorrectData($username, $password)
