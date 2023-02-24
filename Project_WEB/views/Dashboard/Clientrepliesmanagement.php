@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
   }
 if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
     header('Location:../LoginRegister.php');
+    $_SESSION['message'] = "You must <strong>login</strong> first!";
 }
 
 ?>

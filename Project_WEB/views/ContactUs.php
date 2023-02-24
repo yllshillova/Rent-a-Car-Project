@@ -3,8 +3,9 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+if(!isset($_SESSION['user']) || (trim ($_SESSION['user']) == '')){
   header('Location:LoginRegister.php');
+  $_SESSION['message'] = "You must <strong>login</strong> first!";
 }
 
 ?>
@@ -46,6 +47,7 @@ if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
         </div>
       </div>
       <div class="right-side">
+
         <?php
         include_once 'Dashboard/message.php';
         ?>
