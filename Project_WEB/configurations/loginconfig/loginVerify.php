@@ -15,7 +15,7 @@ if (isset($_POST['signin-btn'])) {
     $register = new RegisterLogic($_POST);
     $register->registerUser();
 } else {
-    header("Location: ../../views/HomePage.php");
+    header("Location: ../../views/LoginRegister.php");
 }
 
 class LoginLogic
