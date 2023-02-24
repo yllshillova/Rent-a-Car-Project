@@ -52,7 +52,7 @@ if(!isset($_SESSION)){
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input class="button_signIn" name="signin-btn" type="submit" value="Login">
+                        <input class="button_signIn" name="signin-btn" type="submit" value="Login" onclick="validationSignIn()">
                     </div>
                     <div class="signup-link">
                         Not a member? <a href="">Signup now</a>
@@ -71,7 +71,7 @@ if(!isset($_SESSION)){
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input class="button_signUp" name="signup-btn" type="submit" value="Signup">
+                        <input class="button_signUp" name="signup-btn" type="submit" value="Signup" onclick="validationSignUp()">
                     </div>
                 </form>
             </div>
