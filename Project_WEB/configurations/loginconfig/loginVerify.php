@@ -119,7 +119,12 @@ class RegisterLogic
         if ($result->num_rows > 0) {
             $_SESSION['message'] = "Username is <strong>taken!</strong> Try again.";
             header("Location: ../../views/LoginRegister.php");
-        } else if (
+        }
+        else if(empty($this->username) || empty($this->lastname) || empty($this->password)) {
+            $_SESSION['message'] = "All fields are <strong>required</strong>to sign up!";
+            header("Location: ../../views/LoginRegister.php");
+        }
+        else if (
             ($this->username === "yll" && $this->lastname === "shillova")
             || ($this->username === "fazli" && $this->lastname === "thaqi")
         ) {
@@ -127,7 +132,8 @@ class RegisterLogic
             $mapper = new UserMapper();
             $mapper->insertUser($user);
             header("Location: ../../views/LoginRegister.php");
-        } else {
+        }
+        else {
             $user = new SimpleUser($this->username, $this->lastname, $this->password, 0);
             $mapper = new UserMapper();
             $mapper->insertUser($user);

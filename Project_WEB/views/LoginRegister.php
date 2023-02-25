@@ -60,14 +60,13 @@ if(!isset($_SESSION)){
                 </form>
                 <form action="../configurations/loginconfig/loginVerify.php" method="POST" class="signup">
                     <div class="field">
-                        <input id="username_SignUp" name="signup-username" type="text" placeholder="Username" required>
+                        <input id="username_SignUp" name="signup-username" type="text" placeholder="Username" >
                     </div>
                     <div class="field">
-                        <input id="lastname_SignUp" name="signup-lastname" type="text" placeholder="Lastname" required>
+                        <input id="lastname_SignUp" name="signup-lastname" type="text" placeholder="Lastname" >
                     </div>
                     <div class="field">
-                        <input id="passwordi_SignUp" name="signup-password" type="password" placeholder="Password"
-                            required>
+                        <input id="passwordi_SignUp" name="signup-password" type="password" placeholder="Password">
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
