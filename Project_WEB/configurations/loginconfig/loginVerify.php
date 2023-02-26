@@ -49,7 +49,7 @@ class LoginLogic
     {
 
         if (empty($username) || empty($password)) {
-            return $_SESSION['message'] = "Username and password required!";
+            return $_SESSION['message'] = "Username and password <strong>required!</strong>";
         }
 
         return false;
@@ -62,7 +62,7 @@ class LoginLogic
         $sql = "select * from user where username = '$username'";
         $result = mysqli_query($mapper->getConnection(), $sql);
         if (mysqli_num_rows($result) == 0 || $user == null) {
-            return $_SESSION['message'] = "User doesnt exist!";
+            return $_SESSION['message'] = "User doesnt <strong>exist!</strong>";
         }
     }
     private function verifyPassword($password)
@@ -70,7 +70,7 @@ class LoginLogic
         $mapper = new UserMapper();
         $user = $mapper->getUserByPassword($password);
         if (!password_verify($password, $user['password'])) {
-            $_SESSION['message'] = "Password incorrect!";
+            $_SESSION['message'] = "Password <strong>incorrect!</strong>";
             return true;
         }
     }

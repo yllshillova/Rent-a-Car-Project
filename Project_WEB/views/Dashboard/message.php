@@ -86,22 +86,31 @@ if (isset($_SESSION['message'])) {
 
 
     <!-- js part -->
-    <script>
-        const alertMessage = document.querySelector('.alert-message');
-        const messageBtn = document.querySelector('.messageBtn');
+   
+<script>
+    const alertMessage = document.querySelector('.alert-message');
+    const messageBtn = document.querySelector('.messageBtn');
 
-        // Add event listener to the close button
-        messageBtn.addEventListener('click', () => {
-            alertMessage.classList.add('slideOut');
+    // Add event listener to the close button
+    messageBtn.addEventListener('click', () => {
+        alertMessage.classList.add('slideOut');
 
-            // Remove the alert message from the DOM after the animation has finished
-            setTimeout(() => {
-                alertMessage.remove();
-            }, 500);
-        });
+        // Remove the alert message from the DOM after the animation has finished
+        setTimeout(() => {
+            alertMessage.remove();
+        }, 500);
+    });
 
-    </script>
+    // Automatically hide the alert message after 4 seconds
+    setTimeout(() => {
+        alertMessage.classList.add('slideOut');
 
+        // Remove the alert message from the DOM after the animation has finished
+        setTimeout(() => {
+            alertMessage.remove();
+        }, 500);
+    }, 1500);
+</script>
 
 
 
