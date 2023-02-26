@@ -83,9 +83,11 @@ class LoginLogic
             if ($user['role'] == 1) {
                 $admin = new AdminUser($user['username'], $user['userlastname'], $user['password'], $user['role']);
                 $admin->setSession($admin->getUsername());
+                $admin->setCookie();
             } else if ($user['role'] == 0) {
                 $simple = new SimpleUser($user['username'], $user['userlastname'], $user['password'], $user['role']);
                 $simple->setSession($simple->getUsername());
+                $simple->setCookie();
             }
             return true;
         } else
@@ -131,6 +133,7 @@ class RegisterLogic
             $user = new AdminUser($this->username, $this->lastname, $this->password, 1);
             $mapper = new UserMapper();
             $user->setSession($user->getUsername());
+            $user->setCookie();
             $mapper->insertUser($user);
             header("Location: ../../views/HomePage.php");
         }
@@ -138,6 +141,7 @@ class RegisterLogic
             $user = new SimpleUser($this->username, $this->lastname, $this->password, 0);
             $mapper = new UserMapper();
             $user->setSession($user->getUsername());
+            $user->setCookie();
             $mapper->insertUser($user);
             header("Location: ../../views/HomePage.php");
         }
